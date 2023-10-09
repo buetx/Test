@@ -38,21 +38,19 @@ var db={
  <script>
 
  function selectedm1(clicked) {
-    console.log(clicked )
-    document.body.innerHTML=`<h1>ম্যাট্রিক্স ও নির্ণায়ক</h1><div  id="3rd"></div>`
+    document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
    
-   for (let i = 0; i < Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"]).length ; i++) {
+   for (let i = 0; i < Object.keys(db[clicked]).length ; i++) {
         
-    // h4.setAttribute('onclick', 'download()')
     (function (link){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click", function() {
     window.open(link, '_self')
   })
-        h4.innerText = Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]
+        h4.innerText = Object.keys(db[clicked])[i]
     document.getElementById('3rd').append(h4)
-      })(db["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]]);
+      })(db["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(db[clicked])[i]]);
     
    
     }
