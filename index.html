@@ -11,17 +11,43 @@
     <meta name=description content="Economist">
     <link rel=alternate hreflang=en-us href="https://mcubd.netlify.app/" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <style>
+    body{
+      margin-top:10vh;
+      background-image: url("https://buetx.github.io/webapp//img/bg2.jpg") ;
+     background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+      }
+   .step1,#ul>li,h4{
+     background: rgba(255,255,255,0.4);
+backdrop-filter: blur(4px);
+border-radius: 2px;
+     
+     font-size:26px;
+     font-weight:100;
+     padding:20px;
+     margin:0px;
+     margin-top:40px;
+     text-align:center;
+     
+     }
+     #ul{list-style-type: none;
+       margin:0px;
+       padding:0px;
+       }
+    </style>
 </head>
 <body> 
 
-<h1 id="p1">Physics 1st paper </h1>
-<h1 id="p2">Physics 2nd paper </h1>
-<h1 id="c1">Chemistry 1st paper </h1>
-<h1 id="c2">Chemistry 2nd paper </h1>
-<h1 id="b1">Biology  1st paper </h1>
-<h1 id="b2">Biology 2nd paper </h1>
-<h1 id="m1">Math 1st paper </h1>
-<h1 id="m2">Math 2nd paper </h1>
+<h1  class="step1"  id="p1">Physics 1st paper </h1>
+<h1  class="step1"  id="p2">Physics 2nd paper </h1>
+<h1  class="step1"  id="c1">Chemistry 1st paper </h1>
+<h1  class="step1"  id="c2">Chemistry 2nd paper </h1>
+<h1  class="step1"  id="b1">Biology  1st paper </h1>
+<h1  class="step1"  id="b2">Biology 2nd paper </h1>
+<h1  class="step1"  id="m1">Math 1st paper </h1>
+<h1  class="step1"  id="m2">Math 2nd paper </h1>
 
 
 
@@ -41,23 +67,18 @@ var db={
     document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
    
    for (let i = 0; i < Object.keys(db[clicked]).length ; i++) {
-        
     (function (link){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click", function() {
-    window.open(link, '_self')
-  })
+    window.open(link, '_self')  })
         h4.innerText = Object.keys(db[clicked])[i]
     document.getElementById('3rd').append(h4)
       })(db["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(db[clicked])[i]]);
     
-   
     }
-   
-   
 
-}
+};
 function selectedm2() {
     d = document.getElementById("m2-sel").value;
     alert(d);
@@ -66,9 +87,7 @@ function selectedm2() {
 
 document.getElementById("m1").onclick=function ()
 {
-  console.log("m1 clicked");
   document.body.innerHTML=`
-  
     <ul id="ul">
     <li >ম্যাট্রিক্স ও নির্ণায়ক</li>
     <li >সরলরেখা</li>
@@ -78,10 +97,8 @@ document.getElementById("m1").onclick=function ()
     <li >যোগজীকরণ</li>
     </ul>
     `
-    var ul = document.getElementById('ul');
-ul.onclick = function(event) {
-    selectedm1(event.target.innerHTML);
-};  
+    document.getElementById('ul')
+    .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
 };
 
@@ -112,3 +129,5 @@ document.getElementById("m2").onclick=function ()
 </body>
 
     </html>
+
+
