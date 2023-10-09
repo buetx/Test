@@ -40,10 +40,9 @@ var db={
    alert(link)
     window.open(link, '_self')
     }
-var list={one:"9", two:"", three:""} 
- function selectedm1() {
-    d = document.getElementById("m1-sel").value;
-    console.log(Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"]) )
+
+ function selectedm1(clicked) {
+    console.log(clicked )
     document.body.innerHTML=`<h1>ম্যাট্রিক্স ও নির্ণায়ক</h1><div  id="3rd"></div>`
    
    for (let i = 0; i < Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"]).length ; i++) {
@@ -78,17 +77,22 @@ function selectedm2() {
 document.getElementById("m1").onclick=function ()
 {
   console.log("m1 clicked");
-  document.body.innerHTML=`  <label for="cars">Choose a chapter:</label>
-  <select name="cars" onchange="selectedm1()" id="m1-sel">
-    <option disabled selected >Select</option>
-    <option >ম্যাট্রিক্স ও নির্ণায়ক</option>
-    <option >সরলরেখা</option>
-    <option >বৃত্ত</option>
-    <option >ত্রিকোণমিতি</option>
-    <option >অন্তরীকরণ</option>
-    <option >যোগজীকরণ</option>
-    
-  </select>`
+  document.body.innerHTML=`
+  
+    <ul id="ul">
+    <li >ম্যাট্রিক্স ও নির্ণায়ক</li>
+    <li >সরলরেখা</li>
+    <li >বৃত্ত</li>
+    <li >ত্রিকোণমিতি</li>
+    <li >অন্তরীকরণ</li>
+    <li >যোগজীকরণ</li>
+    </ul>
+    `
+    var ul = document.getElementById('ul');
+ul.onclick = function(event) {
+    selectedm1(event.target.innerHTML);
+};  
+
 };
 
 
