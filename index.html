@@ -36,33 +36,25 @@ var db={
 
   
  <script>
- function download (link){
-   alert(link)
-    window.open(link, '_self')
-    }
 
  function selectedm1(clicked) {
     console.log(clicked )
     document.body.innerHTML=`<h1>ম্যাট্রিক্স ও নির্ণায়ক</h1><div  id="3rd"></div>`
    
    for (let i = 0; i < Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"]).length ; i++) {
-  
- // console.log("**** "+db["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]])
-  
-  
-        let h4 = document.createElement("h4");
+        
+    // h4.setAttribute('onclick', 'download()')
+    (function (link){
+      let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
-    // h4.setAttribute('onclick', 'download(db["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]])')
-    let ii=i
-    console.log(Object.keys(list)[i])
-    (function (a){
-       h4.setAttribute('onclick', 'download(a)')
-      })(i);
+       h4.addEventListener("click", function() {
+    window.open(link, '_self')
+  })
+        h4.innerText = Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]
+    document.getElementById('3rd').append(h4)
+      })(db["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]]);
     
    
-   
-    h4.innerText = Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]
-    document.getElementById('3rd').append(h4)
     }
    
    
