@@ -37,6 +37,7 @@ var db={
   
  <script>
  function download (link){
+   alert(link)
     window.open(link, '_self')
     }
  
@@ -47,9 +48,12 @@ var db={
    
    for (let i = 0; i < Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"]).length ; i++) {
   
+  console.log(Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i])
+  
+  
         let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
-    h4.setAttribute('onclick', 'download(Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i])')
+    h4.setAttribute('onclick', 'download(Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]')
     h4.innerText = Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]
     document.getElementById('3rd').append(h4)
     }
@@ -104,4 +108,4 @@ document.getElementById("m2").onclick=function ()
 
 </body>
 
-    </html>
+        </html>
