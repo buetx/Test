@@ -13,23 +13,87 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 </head>
 <body> 
-      <!-- <video id="bg-vid" autoplay muted loop >
-        <source src="./logoimg/super.webm" type="video/mp4">
-      </video> -->
 
-   
-<!-- <h1>404 not found</h1> -->
-
-<h1>Hello world<\h1>
-
-
-
+<h1 id="p1">Physics 1st paper </h1>
+<h1 id="p2">Physics 2nd paper </h1>
+<h1 id="c1">Chemistry 1st paper </h1>
+<h1 id="c2">Chemistry 2nd paper </h1>
+<h1 id="b1">Biology  1st paper </h1>
+<h1 id="b2">Biology 2nd paper </h1>
+<h1 id="m1">Math 1st paper </h1>
+<h1 id="m2">Math 2nd paper </h1>
 
 
 
+ 
+
+
+<script>
+var db={
+  "ম্যাট্রিক্স ও নির্ণায়ক":{"lecture 1":"https://youtu.be/2lvpBKYuvdA","lecture 2":"https://youtu.be/dm5_81k5WWw?si=GJp_YNQnU-3QFNFl"}
+  }
+</script>
 
   
  <script>
+ function download (link){
+    window.open(link, '_self')
+    }
+ 
+ function selectedm1() {
+    d = document.getElementById("m1-sel").value;
+    console.log(Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"]) )
+    document.body.innerHTML=`<h1>ম্যাট্রিক্স ও নির্ণায়ক</h1><div  id="3rd"></div>`
+   
+   for (let i = 0; i < Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"]).length ; i++) {
+  
+        let h4 = document.createElement("h4");
+    h4.setAttribute('class', 'h4')
+    h4.setAttribute('onclick', 'download(Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i])')
+    h4.innerText = Object.keys(db["ম্যাট্রিক্স ও নির্ণায়ক"])[i]
+    document.getElementById('3rd').append(h4)
+    }
+   
+
+}
+function selectedm2() {
+    d = document.getElementById("m2-sel").value;
+    alert(d);
+}
+
+
+document.getElementById("m1").onclick=function ()
+{
+  console.log("m1 clicked");
+  document.body.innerHTML=`  <label for="cars">Choose a chapter:</label>
+  <select name="cars" onchange="selectedm1()" id="m1-sel">
+    <option disabled selected >Select</option>
+    <option >ম্যাট্রিক্স ও নির্ণায়ক</option>
+    <option >সরলরেখা</option>
+    <option >বৃত্ত</option>
+    <option >ত্রিকোণমিতি</option>
+    <option >অন্তরীকরণ</option>
+    <option >যোগজীকরণ</option>
+    
+  </select>`
+};
+
+
+document.getElementById("m2").onclick=function ()
+{
+  console.log("m2 clicked");
+  document.body.innerHTML=`  <label for="cars">Choose a chapter:</label>
+  <select name="cars" onchange="selectedm2()" id="m2-sel">
+    <option disabled selected >Select</option>
+    <option >জটিল সংখ্যা</option>
+    <option >বহুপদী সমীকরণ</option>
+    <option >কণিক</option>
+    <option >বিপরীত ত্রিকোণমিতি</option>
+    <option >স্থিতিবিদ্যা</option>
+    <option >গতিবিদ্যা</option>
+    
+  </select>`
+};
 
 </script>
 
@@ -40,4 +104,4 @@
 
 </body>
 
-</html>
+    </html>
