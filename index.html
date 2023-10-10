@@ -4,42 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./favicon.ico?" type="image/x-icon">
-    <title>Mcubd</title>
-    <meta name=author content="bcubd">
-    <meta name=description content="Economist">
-    <link rel=alternate hreflang=en-us href="https://mcubd.netlify.app/" />
+    <title>Webapp</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta name="viewport" 
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <style>
     body{
-  //  scroll-behavior: smooth;
-  background-size:cover;
+      background-size:cover;
       margin-top:10vh;
       background-image: url("https://firebasestorage.googleapis.com/v0/b/india-f7d05.appspot.com/o/chat%2Fbg30.jpg?alt=media&token=6f735aa1-c8fd-41e7-b17f-c5ed05278734") ;
-     background-repeat: no-repeat;
-    background-attachment: fixed;
-   
- 
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
       }
    #p1,#p2,#m1,#m2,#b1,#b2,#c1,#c2,#ul>li,h4{
       background: rgba(255,255,255,0.7);
-     //backdrop-filter: blur(4px);
-   filter: blur(.00001px);
+      filter: blur(.00001px);
       border-radius: 2px;
-     font-size:26px;
-     font-weight:100;
-     padding:20px;
-     margin:0px;
-     margin-top:40px;
-     text-align:center;
+      font-size:26px;
+      font-weight:100;
+      padding:20px;
+      margin:0px;
+      margin-top:40px;
+      text-align:center;
      }
-     #ul{list-style-type: none;
-       margin:0px;
-       padding:0px;
-       }
+   #ul{list-style-type: none;
+      margin:0px;
+      padding:0px;
+     }
        
     </style>
 </head>
@@ -106,7 +98,7 @@ document.getElementById("m1").onclick=function ()
     
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {m1clicked(event.target.innerHTML);}
 
 };
 
@@ -123,7 +115,7 @@ document.getElementById("m2").onclick=function ()
     </ul>`
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {m2clicked(event.target.innerHTML);}
 };
 
 document.getElementById("p1").onclick=function ()
@@ -142,7 +134,7 @@ document.getElementById("p1").onclick=function ()
 
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {p1clicked(event.target.innerHTML);}
 
 };
 
@@ -162,7 +154,7 @@ document.getElementById("p2").onclick=function ()
    
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {p2clicked(event.target.innerHTML);}
 
 };
 
