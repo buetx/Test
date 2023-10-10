@@ -60,7 +60,7 @@ var db={
   
  <script>
 
- function selectedm1(clicked) {
+ function step3(clicked) {
     document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
    
    for (let i = 0; i < Object.keys(db[clicked]).length ; i++) {
@@ -71,7 +71,7 @@ var db={
     window.open(link, '_self')  })
         h4.innerText = Object.keys(db[clicked])[i]
     document.getElementById('3rd').append(h4)
-      })(db["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(db[clicked])[i]]);
+      })(db[clicked][Object.keys(db[clicked])[i]]);
     
     }
 
@@ -98,7 +98,7 @@ document.getElementById("m1").onclick=function ()
     
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {m1clicked(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 
 };
 
@@ -115,7 +115,7 @@ document.getElementById("m2").onclick=function ()
     </ul>`
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {m2clicked(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 };
 
 document.getElementById("p1").onclick=function ()
@@ -134,7 +134,7 @@ document.getElementById("p1").onclick=function ()
 
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {p1clicked(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 
 };
 
@@ -154,7 +154,7 @@ document.getElementById("p2").onclick=function ()
    
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {p2clicked(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 
 };
 
@@ -172,7 +172,7 @@ document.getElementById("c1").onclick=function ()
    
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 
 };
 
@@ -189,7 +189,7 @@ document.getElementById("c2").onclick=function ()
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 
 };
 
@@ -213,7 +213,7 @@ document.getElementById("b1").onclick=function ()
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 
 };
 
@@ -237,7 +237,7 @@ document.getElementById("b2").onclick=function ()
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {selectedm1(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML);}
 
 };
 
