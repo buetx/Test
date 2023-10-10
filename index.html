@@ -15,46 +15,44 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <style>
     body{
-   //   scroll-behavior: smooth;
- //   background-size: contain;
+  //  scroll-behavior: smooth;
+  background-size:cover;
       margin-top:10vh;
-     // background-image: url("https://firebasestorage.googleapis.com/v0/b/india-f7d05.appspot.com/o/chat%2Fbg30.jpg?alt=media&token=6f735aa1-c8fd-41e7-b17f-c5ed05278734") ;
-   //  background-repeat: no-repeat;
- // background-attachment: initial;
-//  background-size: cover;
+      background-image: url("https://firebasestorage.googleapis.com/v0/b/india-f7d05.appspot.com/o/chat%2Fbg30.jpg?alt=media&token=6f735aa1-c8fd-41e7-b17f-c5ed05278734") ;
+     background-repeat: no-repeat;
+    background-attachment: fixed;
+   
  
       }
-   .step1,#ul>li,h4{
-     background: rgba(255,255,255,0.4);
-backdrop-filter: blur(4px);
-border-radius: 2px;
-     
+   #p1,#p2,#m1,#m2,#b1,#b2,#c1,#c2,#ul>li,h4{
+      background: rgba(255,255,255,0.7);
+     //backdrop-filter: blur(4px);
+   filter: blur(.00001px);
+      border-radius: 2px;
      font-size:26px;
      font-weight:100;
      padding:20px;
      margin:0px;
      margin-top:40px;
      text-align:center;
-     
      }
      #ul{list-style-type: none;
        margin:0px;
        padding:0px;
        }
-       #m2{
-         margin-bottom:1000px}
+       
     </style>
 </head>
 <body> 
 
-<h1  class="step1"  id="p1">Physics 1st paper </h1>
-<h1  class="step1"  id="p2">Physics 2nd paper </h1>
-<h1  class="step1"  id="c1">Chemistry 1st paper </h1>
-<h1  class="step1"  id="c2">Chemistry 2nd paper </h1>
-<h1  class="step1"  id="b1">Biology  1st paper </h1>
-<h1  class="step1"  id="b2">Biology 2nd paper </h1>
-<h1  class="step1"  id="m1">Math 1st paper </h1>
-<h1  class="step1"  id="m2">Math 2nd paper </h1>
+<h1  id="p1">Physics 1st paper </h1>
+<h1  id="p2">Physics 2nd paper </h1>
+<h1  id="c1">Chemistry 1st paper </h1>
+<h1  id="c2">Chemistry 2nd paper </h1>
+<h1  id="b1">Biology  1st paper </h1>
+<h1  id="b2">Biology 2nd paper </h1>
+<h1  id="m1">Math 1st paper </h1>
+<h1  id="m2">Math 2nd paper </h1>
 
 
 
@@ -259,5 +257,3 @@ document.getElementById("b2").onclick=function ()
 </body>
 
     </html>
-
-
