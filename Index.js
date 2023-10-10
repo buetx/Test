@@ -30,7 +30,9 @@ app.use(cors({
 app.use(bodyParser.text({ type: "*/*" }));
 
 
-
+app.get('/links',async (req,res)=>{
+  res.send('888jj')
+})
 
 
 
