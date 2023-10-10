@@ -18,7 +18,7 @@ const bodyParser=require('body-parser')
 const app = express();
 // const PORT = 3000;
 
-app.listen(process.env.PORT || 8000, () => {    console.log(`Server is running on PORT: ${"PORT"}`);
+app.listen(process.env.PORT || 8000, () => {    console.log(`Server is running on PORT:`);
 });
 
 app.use(cors({
