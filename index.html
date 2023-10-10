@@ -90,6 +90,7 @@ function selectedm2() {
 }
 //-----------------------------------------------------------------
 
+function topp(){document.body.scrollTop = 0;};
 document.getElementById("m1").onclick=function ()
 {
   document.body.innerHTML=`
@@ -102,7 +103,8 @@ document.getElementById("m1").onclick=function ()
     <li >যোগজীকরণ</li>
     </ul>
     `
-    document.body.scrollTop = 0;
+    
+    setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
@@ -110,18 +112,18 @@ document.getElementById("m1").onclick=function ()
 
 document.getElementById("m2").onclick=function ()
 {
-  console.log("m2 clicked");
-  document.body.innerHTML=`  <label for="cars">Choose a chapter:</label>
-  <select name="cars" onchange="selectedm2()" id="m2-sel">
-    <option disabled selected >Select</option>
-    <option >জটিল সংখ্যা</option>
-    <option >বহুপদী সমীকরণ</option>
-    <option >কণিক</option>
-    <option >বিপরীত ত্রিকোণমিতি</option>
-    <option >স্থিতিবিদ্যা</option>
-    <option >গতিবিদ্যা</option>
-    
-  </select>`
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >জটিল সংখ্যা</li>
+    <li >বহুপদী সমীকরণ</li>
+    <li >কণিক</li>
+    <li >বিপরীত ত্রিকোণমিতি</li>
+    <li >স্থিতিবিদ্যা</li>
+    <li >গতিবিদ্যা</li>
+    </ul>`
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {selectedm1(event.target.innerHTML);}
 };
 
 document.getElementById("p1").onclick=function ()
@@ -137,7 +139,8 @@ document.getElementById("p1").onclick=function ()
     <li >আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব</li>
     </ul>
     `
-    document.body.scrollTop = 0;
+
+    setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
@@ -156,7 +159,8 @@ document.getElementById("p2").onclick=function ()
     <li >সেমিকন্ডাক্টর ও ইলেকট্রনিকস</li>
     </ul>
     `
-    document.body.scrollTop = 0;
+   
+    setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
@@ -173,7 +177,8 @@ document.getElementById("c1").onclick=function ()
     <li >কর্মমুখী রসায়ন</li>
     </ul>
     `
-    document.body.scrollTop = 0;
+   
+    setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
@@ -190,7 +195,7 @@ document.getElementById("c2").onclick=function ()
     <li >অর্থনৈতিক রসায়ন</li>
     </ul>
     `
-    document.body.scrollTop = 0;
+    setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
@@ -214,7 +219,7 @@ document.getElementById("b1").onclick=function ()
     <li >জীবের পরিবেশ, বিস্তার ও সংরক্ষণ</li>
     </ul>
     `
-    document.body.scrollTop = 0;
+    setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
@@ -238,7 +243,7 @@ document.getElementById("b2").onclick=function ()
     <li >প্রানির আচরণ</li>
     </ul>
     `
-    document.body.scrollTop = 0;
+    setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {selectedm1(event.target.innerHTML);}
 
