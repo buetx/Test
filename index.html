@@ -36,7 +36,7 @@
     </style>
 </head>
 <body> 
-<!--
+
 <h1  id="p1">Physics 1st paper </h1>
 <h1  id="p2">Physics 2nd paper </h1>
 <h1  id="c1">Chemistry 1st paper </h1>
@@ -46,27 +46,24 @@
 <h1  id="m1">Math 1st paper </h1>
 <h1  id="m2">Math 2nd paper </h1>
 
--->
+
 
  
 
 
 <script>
-/* var db={
+  var d={
   "ম্যাট্রিক্স ও নির্ণায়ক":{"lecture 1":"http://root.bdff.workers.dev/0:/Acs/Matrix-lecture1.mp4","lecture 2":"http://root.bdff.workers.dev/0:/Acs/Matrix-lecture2.mp4"}
-  } */
+  } 
+    var db={
+  "ম্যাট্রিক্স ও নির্ণায়ক":{"lecture 1":"https://drive.google.com/uc?id=1PEkrNN4T2ZoqwDrpMU9Oeq8Go8AytqLw&export=download","lecture 2":"https://drive.google.com/uc?id=18K-ISV9TSM3r0J06yviMNhLXgYfAcNk3&export=download"},
+        "ভেক্টর":{"lecture 1":"https://drive.google.com/uc?id=1eSzCtoVyk5AhJmNber9BPBMQWw555zJJ&export=download"}
+  } 
 </script>
 
-  
- <script>
+  <script>
 
-     const myTimeout = setTimeout(my, 5000);
-
-function my() {
-  window.open("http://root.bdff.workers.dev/0:/Acs/Matrix-lecture2.mp4","_blank")
-}
-
-/* function step3(clicked) {
+    function step3(clicked) {
     document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
    
    for (let i = 0; i < Object.keys(db[clicked]).length ; i++) {
@@ -74,7 +71,7 @@ function my() {
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click", function() {
-   window.open(link,"_blank"); })
+   window.open(link,"_self"); })
         h4.innerText = Object.keys(db[clicked])[i]
     document.getElementById('3rd').append(h4)
       })(db[clicked][Object.keys(db[clicked])[i]]);
@@ -248,7 +245,7 @@ document.getElementById("b2").onclick=function ()
 };
 
 
-*/
+
 
 </script>
 
