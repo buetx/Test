@@ -3,8 +3,8 @@
   "ম্যাট্রিক্স ও নির্ণায়ক":{"lecture 1:"","lecture 2":"http://root.bdff.workers.dev/0:/Acs/Matrix-lecture2.mp4"}
   } 
     var db={
-  "ম্যাট্রিক্স ও নির্ণায়ক":{"lecture 1":"https://www.videovor.com/download/?token=65f4d13fe1d612738398d48d17126a181c9030e1&vk=vgVvOwwkS1qFt8duxa30V7yWjmsg7QyfouHxlC4WvIc&fn=Matrix-lecture1.mp4","lecture 2":"https://drive.google.com/uc?id=18K-ISV9TSM3r0J06yviMNhLXgYfAcNk3&export=download"},
-        "ভেক্টর":{"lecture 1":"https://drive.google.com/uc?id=1eSzCtoVyk5AhJmNber9BPBMQWw555zJJ&export=download"}
+  "ম্যাট্রিক্স ও নির্ণায়ক":{"lecture 1":"https://www.videovor.com/download/?token=65f4d13fe1d612738398d48d17126a181c9030e1&vk=vgVvOwwkS1qFt8duxa30V7yWjmsg7QyfouHxlC4WvIc&fn=Matrix-lecture1.mp4","lecture 2":"https://www.videovor.com/download/?token=65f4d13fe1d612738398d48d17126a181c9030e1&vk=iRvXlai2lbLcbRM0OhyDruiAV8Go_O12tjxtY9Lt5iw&fn=Matrix-lecture-2"},
+        "ভেক্টর":{"lecture 1":"https://www.videovor.com/download/?token=65f4d13fe1d612738398d48d17126a181c9030e1&vk=O8rmlCFmH1myt03WXHAG-l0VnfnZMRyIaTYqA8eq3Jc&fn=Vector-lecture-1"}
   } 
 
 
