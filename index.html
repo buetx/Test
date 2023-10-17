@@ -312,21 +312,24 @@ import {
   const app = initializeApp(config);
 const database = getDatabase(app);
 
-
+var glo
 
         
      const dbRef = ref(getDatabase());
    get(child(dbRef, `Name`)).then((snapshot) => {
   if (snapshot.exists()) {
-   console.log(snapshot.val()+'------dooone');
+  // console.log(snapshot.val());
+      glo=snapshot.val()
   } else {
 console.log("No data available");
+
+
  }
 }).catch((error) => {
  console.error(error);
 });
 
-        
+        console.log(glo)
     
 </script>
 
