@@ -316,7 +316,7 @@ const database = getDatabase(app);
 
         
      const dbRef = ref(getDatabase());
-   get(child(dbRef, `db/child-db-1/val`)).then((snapshot) => {
+   get(child(dbRef, `Name`)).then((snapshot) => {
   if (snapshot.exists()) {
    console.log(snapshot.val()+'------dooone');
   } else {
