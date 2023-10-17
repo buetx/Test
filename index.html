@@ -317,7 +317,7 @@ import {
 
 
         
-    const dbRef = ref(getDatabase());
+     const dbRef = ref(getDatabase());
 get(child(dbRef, `db/child-db-1/val`)).then((snapshot) => {
   if (snapshot.exists()) {
     console.log(snapshot.val()+'------dooone');
@@ -327,6 +327,8 @@ get(child(dbRef, `db/child-db-1/val`)).then((snapshot) => {
 }).catch((error) => {
   console.error(error);
 });
+
+        
     
 </script>
 
