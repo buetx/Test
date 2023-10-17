@@ -85,8 +85,7 @@
 <h1  id="m1">Math 1st paper </h1>
 <h1  id="m2">Math 2nd paper </h1>
 
-<script src="https://mcubd.github.io/webapp/1.js">
-</ script>
+
 
     
  <script type="module">
@@ -108,7 +107,7 @@ import {
   const app = initializeApp(config);
 const database = getDatabase(app);
 
-var glo
+
 
         
      const dbRef = ref(getDatabase());
@@ -118,14 +117,9 @@ var glo
       glo=snapshot.val()
   } else {
 console.log("No data available");
-
-
- }
-}).catch((error) => {
+ }}).catch((error) => {
  console.error(error);
 });
-
-        console.log("782+")
     
 
 
