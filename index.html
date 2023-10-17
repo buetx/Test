@@ -312,8 +312,11 @@ import {
 
   
   const app = initializeApp(config);
-    </script>
-<script>
+
+
+
+
+        
     const dbRef = ref(getDatabase());
 get(child(dbRef, `db/child-db-1/val`)).then((snapshot) => {
   if (snapshot.exists()) {
