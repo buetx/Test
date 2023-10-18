@@ -111,7 +111,7 @@ var glo
 
         
      const dbRef = ref(getDatabase());
-   get(child(dbRef, `Name`)).then((snapshot) => {
+   get(child(dbRef, `multi/webapp/data`)).then((snapshot) => {
   if (snapshot.exists()) {
   //console.log(snapshot.val());
       glo=snapshot.val()
@@ -123,34 +123,44 @@ console.log("No data available");
  console.error(error);
 });
 
+     const d3b = getDatabase();
+const starCountRef = ref(d3b, 'multi/webapp/data');
+onValue(starCountRef, (snapshot) => {
+    
+  const data = snapshot.val();
+    //console.log(data)
+  //updateStarCount(postElement, data);
+});
+
 window.load=async function (stringg){
-       console.error(stringg) 
+       
 
         
   
-    var db=stringg
-  
+    window.raww=JSON.parse(stringg)
+
+   // alert(Object.keys(string))
+    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
+    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0])
+  console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
 
     function step3(clicked) {
     document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
    
-   for (let i = 0; i < Object.keys(db[clicked]).length ; i++) {
+   for (let i = 0; i < Object.keys(raww[clicked]).length ; i++) {
     (function (link){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click", function() {
    window.open(link,"_self"); })
-        h4.innerText = Object.keys(db[clicked])[i]
+        h4.innerText = Object.keys(raww[clicked])[i]
     document.getElementById('3rd').append(h4)
-      })(db[clicked][Object.keys(db[clicked])[i]]);
+      })(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])]]);
     
     }
 
 };
-function selectedm2() {
-    d = document.getElementById("m2-sel").value;
-    alert(d);
-}
+
 //-----------------------------------------------------------------
 
 function topp(){window.scrollTo(0,0);};
