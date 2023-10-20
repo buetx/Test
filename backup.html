@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="./favicon.ico?" type="image/x-icon">
+    <title>Webapp</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100&display=swap" rel="stylesheet">
+    
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        /* bengali */
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  font-style: normal;
+  font-weight: 100;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosansbengali/v20/Cn-SJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mcSPVFpVEqE-6KmsolKicWu8w7LwlYc8g.woff2) format('woff2');
+  unicode-range: U+0964-0965, U+0980-09FE, U+1CF7, U+1CFA, U+200C-200D, U+20B9, U+25CC;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  font-style: normal;
+  font-weight: 100;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosansbengali/v20/Cn-SJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mcSPVFpVEqE-6KmsolKidmu8w7LwlYc8g.woff2) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  font-style: normal;
+  font-weight: 100;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosansbengali/v20/Cn-SJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mcSPVFpVEqE-6KmsolKideu8w7LwlY.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+    </style>
+    <style>
+    body{
+        user-select: none;
+      background-size:cover;
+      margin-top:10vh;
+      background-image: url("https://firebasestorage.googleapis.com/v0/b/india-f7d05.appspot.com/o/chat%2Fbg30.jpg?alt=media&token=6f735aa1-c8fd-41e7-b17f-c5ed05278734") ;
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      font-family: 'Noto Sans Bengali', sans-serif;
+    }
+   #p1,#p2,#m1,#m2,#b1,#b2,#c1,#c2,#ul>li,h4{
+      background: rgba(255,255,255,0.7);
+      filter: blur(.00001px);
+      border-radius: 2px;
+      font-size:26px;
+      font-weight:100;
+      padding:20px;
+      margin:0px;
+      margin-top:40px;
+      text-align:center;
+     }
+   #ul{list-style-type: none;
+      margin:0px;
+      padding:0px;
+     }
+       
+    </style>
+</head>
+<body> 
+    
+
+<h1  id="p1">Physics 1st paper </h1>
+<h1  id="p2">Physics 2nd paper </h1>
+<h1  id="c1">Chemistry 1st paper </h1>
+<h1  id="c2">Chemistry 2nd paper </h1>
+<h1  id="b1">Biology  1st paper </h1>
+<h1  id="b2">Biology 2nd paper </h1>
+<h1  id="m1">Math 1st paper </h1>
+<h1  id="m2">Math 2nd paper </h1>
+
+
+
+    
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import {
+      getDatabase, ref, onValue, remove, onChildChanged, update,get,child,set
+    } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
+  const config = {
+    apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
+    authDomain: "test2-5bbd8.firebaseapp.com",
+    databaseURL: "https://test2-5bbd8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "test2-5bbd8",
+    storageBucket: "test2-5bbd8.appspot.com",
+    messagingSenderId: "683307239625",
+    appId: "1:683307239625:web:d28ed1c2fb6b31dd4e6518"
+  };
+
+  
+  const app = initializeApp(config);
+const database = getDatabase(app);
+
+var glo
+
+        
+     const dbRef = ref(getDatabase());
+   get(child(dbRef, `multi/webapp/data`)).then((snapshot) => {
+  if (snapshot.exists()) {
+  //console.log(snapshot.val());
+      glo=snapshot.val()
+      console.log(glo)
+      load(glo)
+  } else {
+console.log("No data available");
+ }}).catch((error) => {
+ console.error(error);
+});
+
+     const d3b = getDatabase();
+const starCountRef = ref(d3b, 'multi/webapp/data');
+onValue(starCountRef, (snapshot) => {
+    
+  const data = snapshot.val();
+    //console.log(data)
+  //updateStarCount(postElement, data);
+});
+
+window.load=async function (stringg){
+       
+
+        
+  
+    window.raww=JSON.parse(stringg)
+
+   // alert(Object.keys(string))
+    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
+    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0])
+  console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
+                   //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
+
+    function step3(clicked) {
+    document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
+   
+   for (let i = 0; i < Object.keys(raww[clicked]).length ; i++) {
+    (function (link){
+      let h4 = document.createElement("h4");
+    h4.setAttribute('class', 'h4')
+       h4.addEventListener("click", function() {
+   window.open(link,"_self"); })
+        h4.innerText = Object.keys(raww[clicked])[i]
+    document.getElementById('3rd').append(h4)
+      })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])]);
+       //console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
+        //  raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])]
+    }
+
+};
+// kskskdldkkdkdkdkdkkdkd 
+    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
+    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
+    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
+    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
+    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])
+    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
+    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])])
+    
+   // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
+
+    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]["Youtube.com/1"])
+  //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
+//-----------------------------------------------------------------
+
+function topp(){window.scrollTo(0,0);};
+document.getElementById("m1").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >ম্যাট্রিক্স ও নির্ণায়ক</li>
+    <li >সরলরেখা</li>
+    <li >বৃত্ত</li>
+    <li >ত্রিকোণমিতি</li>
+    <li >অন্তরীকরণ</li>
+    <li >যোগজীকরণ</li>
+    </ul>
+    `
+    
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+
+};
+
+document.getElementById("m2").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >জটিল সংখ্যা</li>
+    <li >বহুপদী সমীকরণ</li>
+    <li >কণিক</li>
+    <li >বিপরীত ত্রিকোণমিতি</li>
+    <li >স্থিতিবিদ্যা</li>
+    <li >গতিবিদ্যা</li>
+    </ul>`
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+};
+
+document.getElementById("p1").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >ভেক্টর</li>
+    <li >নিউটনিয়ান বলবিদ্যা</li>
+    <li >কাজ, শক্তি ও ক্ষমতা</li>
+    <li >মহাকর্ষ ও অভিকর্ষ</li>
+    <li >পদার্থের গাঠনিক ধর্ম</li>
+    <li >পর্যাবৃত্ত গতি</li>
+    <li >আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব</li>
+    </ul>
+    `
+
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+
+};
+
+document.getElementById("p2").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >তাপগতিবিদ্যা</li>
+    <li >স্থির তড়িৎ</li>
+    <li >চলতড়িৎ</li>
+    <li >ভৌত আলোকবিজ্ঞান</li>
+    <li >আধুনিক পদার্থবিজ্ঞানের সূচনা</li>
+    <li >পরমাণুর মডেল এবং নিউক্লিয়ার পদার্থবিজ্ঞান</li>
+    <li >সেমিকন্ডাক্টর ও ইলেকট্রনিকস</li>
+    </ul>
+    `
+   
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+
+};
+
+document.getElementById("c1").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >ল্যাবরেটরির নিরাপদ ব্যবহার</li>
+    <li >গুণগত রসায়ন</li>
+    <li >মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন</li>
+    <li >রাসায়নিক পরিবর্তন</li>
+    <li >কর্মমুখী রসায়ন</li>
+    </ul>
+    `
+   
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+
+};
+
+document.getElementById("c2").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >পরিবেশ রসায়ন</li>
+    <li >জৈব রসায়ন</li>
+    <li >পরিমাণগত রসায়ন</li>
+    <li >তড়িৎ রসায়ন</li>
+    <li >অর্থনৈতিক রসায়ন</li>
+    </ul>
+    `
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+
+};
+
+document.getElementById("b1").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >কোষ ও এর গঠন</li>
+    <li >কোষ বিভাজন</li>
+    <li >কোষ রসায়ন</li>
+    <li >অণুজীব</li>
+    <li >শৈবাল ও ছত্রাক</li>
+    <li >ব্রায়োফাইটা ও টেরেডোফাইটা</li>
+    <li >নগ্নবীজী ও আবৃতবীজী উদ্ভিদ</li>
+    <li >টিস্যু ও টিস্যুতন্ত্র</li>
+    <li >উদ্ভিদ শারীরতত্ত্ব</li>
+    <li >উদ্ভিদ প্রজনন</li>
+    <li >জীবপ্রযুক্তি</li>
+    <li >জীবের পরিবেশ, বিস্তার ও সংরক্ষণ</li>
+    </ul>
+    `
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+
+};
+
+document.getElementById("b2").onclick=function ()
+{
+  document.body.innerHTML=`
+    <ul id="ul">
+    <li >প্রাণীর বিভিন্নতা ও শ্রেণিবিন্যাস</li>
+    <li >প্রাণীর পরিচিতি</li>
+    <li >পরিপাক ও শোষণ</li>
+    <li >রক্ত সঞ্চালন</li>
+    <li >শ্বাসক্রিয়া ও শ্বসন</li>
+    <li >বর্জ্য ও নিষ্কাশন</li>
+    <li >চলন ও অঙ্গচালনা</li>
+    <li >সমন্বয় ও নিয়ন্ত্রণ</li>
+    <li >মানব জীবনের ধারাবাহিকতা</li>
+    <li >মানবদেহের প্রতিরক্ষা</li>
+    <li >জীনতত্ত্ব ও বিবর্তন</li>
+    <li >প্রানির আচরণ</li>
+    </ul>
+    `
+    setTimeout(topp, 10);
+    document.getElementById('ul')
+    .onclick = function(event) {step3(event.target.innerHTML);}
+
+};
+    }
+
+
+   
+
+ </script>
+</body>
+
+    </html>
