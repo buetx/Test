@@ -152,10 +152,10 @@ window.load=async function (stringg){
     (function (link,ytlink){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
-       h4.addEventListener("click", function() {
-           let myObject = await fetch('https://pipbd.cyclic.app/');
-        let myText = await myObject.text();
-      console.log(ytlink);
+       h4.addEventListener("click",async function() {
+           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        let myText = await myObjectt.text();
+      console.log(myText);
            
   // window.open(link,"_self");
        })
@@ -182,6 +182,7 @@ window.load=async function (stringg){
   //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
 //-----------------------------------------------------------------
 
+    
 function topp(){window.scrollTo(0,0);};
 document.getElementById("m1").onclick=function ()
 {
