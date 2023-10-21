@@ -10,20 +10,22 @@
     <button id="bt" type="button">Go!!!</button>
 
     <script>
-        var inputElement = document.getElementById("username").value
+        
 // Get the button element by its ID
-var button = document.getElementById("bt");
-
+  var button = document.getElementById("bt");
 // Define a function to be executed when the button is clicked
 function handleClick() {
+  var inputElement = document.getElementById("username").value
+
   console.log("Button clicked!");
 
     var i=1
    //var url="https://d39vdn7a7yjx8a.cloudfront.net/transcoded/BbsggM8y2B9/720p_dash/video_720p_"
   var url=inputElement
+    //alert(inputElement)
     setInterval(function() {
     console.log(i)
-    window.open(url+i+'.mp4',"_blank")
+    window.open(inputElement+i+'.mp4',"_blank")
     i++
     }, 100);
 
