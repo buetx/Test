@@ -153,11 +153,24 @@ window.load=async function (stringg){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click",async function() {
+           try{
            let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
         let myText = await myObjectt.text();
-      console.log(myText);
+           let status=await myObjectt.status;
+      
+           if(status==200){
+               console.log(status);
+               window.open(myText,"_self");
+           }else{
+               console.log(link);
+               window.open(link,"_self")
+           }
+     }catch(e){
+               console.log(link);
+               window.open(link,"_self")
+     }
            
-       window.open(myText,"_self");
+       
        })
         h4.innerText = Object.keys(raww[clicked])[i]
     document.getElementById('3rd').append(h4)
