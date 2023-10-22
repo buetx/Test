@@ -154,17 +154,17 @@ window.load=async function (stringg){
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click",async function() {
            try{
-           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
-        let myText = await myObjectt.text();
-           let status=await myObjectt.status;
+          // let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+     //   let myText = await myObjectt.text();
+          // let status=await myObjectt.status;
       
-           if(status==200){
-               console.log(status);
-               window.open(myText,"_self");
-           }else{
-               console.log(link);
+           //if(status==200){
+             //  console.log(status);
+             //  window.open(myText,"_self");
+          // }else{
+              // console.log(link);
                window.open(link,"_self")
-           }
+          // }
      }catch(e){
                console.log(link);
                window.open(link,"_self")
