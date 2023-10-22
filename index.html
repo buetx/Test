@@ -194,6 +194,7 @@ window.load=async function (stringg){
                window.open(myText,"_self");
            }else{
                console.log(link);
+               document.getElementById("loader").style.cssText = 'display:none'
                window.open(link,"_self")
            }
      }catch(e){
