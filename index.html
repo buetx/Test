@@ -149,14 +149,32 @@ window.load=async function (stringg){
     document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
    
    for (let i = 0; i < Object.keys(raww[clicked]).length ; i++) {
-    (function (link){
+    (function (link,ytlink){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
-       h4.addEventListener("click", function() {
-   window.open(link,"_self"); })
+       h4.addEventListener("click",async function() {
+           try{
+           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        let myText = await myObjectt.text();
+           let status=await myObjectt.status;
+      
+           if(status==200){
+               console.log(status);
+               window.open(myText,"_self");
+           }else{
+               console.log(link);
+               window.open(link,"_self")
+           }
+     }catch(e){
+               console.log(link);
+               window.open(link,"_self")
+     }
+           
+       
+       })
         h4.innerText = Object.keys(raww[clicked])[i]
     document.getElementById('3rd').append(h4)
-      })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])]);
+      })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])],Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]));
        //console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
         //  raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])]
     }
@@ -166,7 +184,7 @@ window.load=async function (stringg){
     console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
     console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
     console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
-    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
+    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]]))
     console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])
     console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
     console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])])
@@ -177,6 +195,7 @@ window.load=async function (stringg){
   //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
 //-----------------------------------------------------------------
 
+    
 function topp(){window.scrollTo(0,0);};
 document.getElementById("m1").onclick=function ()
 {
@@ -338,7 +357,11 @@ document.getElementById("b2").onclick=function ()
     }
 
 
-   
+ window.startt=async function () {
+  let myObject = await fetch('https://pipbd.cyclic.app/gg');
+  let myText = await myObject.text();
+  console.log(myText);
+};startt()
 
  </script>
 </body>
