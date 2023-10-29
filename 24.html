@@ -97,6 +97,7 @@
 </style>
 </head>
 <body> 
+    <div id="vid"></div>
 
 
     
@@ -196,7 +197,7 @@ window.load=async function (stringg){
        var end1=await ress[1].text()
        var end2=await ress[2].text()
 
-document.body.innerHTML=`
+document.getElementById("vid").innerHTML=`
                <video autoplay  width="95%" height="auto" controls>
   <source src=${end0} type="video/mp4">
   Your browser does not support the video tag.
