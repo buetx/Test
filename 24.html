@@ -211,35 +211,19 @@ document.getElementById("vid").innerHTML=`<video muted  width="15%" height="auto
 
   })
   .catch(error => {
-    // Handle errors here
- console.log("238")
-  });
-          /* let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+      let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
         let myText = await myObjectt.text();
            let status=await myObjectt.status;
-      
-           if(200==200){
-             document.getElementById("loader").style.cssText = 'display:none'
-               console.log(status);
-               document.body.innerHTML=`
-               <video width="95%" height="auto" controls>
-  <source src=${myText} type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-`
-*/
-              // document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
-             //  window.open(myText,"_self");
-     
-             //  console.log(link);
-               //document.getElementById("loader").style.cssText = 'display:none'
-             //  window.open(link,"_self")
-   //  }
+          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(myText,'_self')}
+          else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
+  });
+
+               
      }catch(e){
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
                
-            //   window.open(link,"_self")
+              window.open(link,"_self")
      }
            
        
