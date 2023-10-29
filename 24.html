@@ -198,15 +198,15 @@ window.load=async function (stringg){
        var end2=await ress[2].text()
 
 document.getElementById("vid").innerHTML=`
-               <video autoplay  width="95%" height="auto" controls>
+               <video muted  width="15%" height="auto" controls>
   <source src=${end0} type="video/mp4">
   Your browser does not support the video tag.
 </video>
- <video autoplay width="95%" height="auto" controls>
+ <video muted  width="15%" height="auto" controls>
   <source src=${end1} type="video/mp4">
   Your browser does not support the video tag.
 </video>
- <video autoplay width="95%" height="auto" controls>
+ <video muted  width="15%" height="auto" controls>
   <source src=${end2} type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -221,6 +221,8 @@ document.getElementById("vid").innerHTML=`
       
         
                console.log(status);
+         document.getElementById("loader").style.cssText = 'display:none'
+               
               // document.body.innerHTML=``
          window.open(myText,'_self')
                /*
@@ -268,7 +270,7 @@ document.getElementById("vid").innerHTML=`
 </video>
 `
 */
-               document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
+              // document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
              //  window.open(myText,"_self");
      
              //  console.log(link);
