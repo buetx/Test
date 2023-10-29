@@ -196,17 +196,21 @@ window.load=async function (stringg){
   .then(async (ress) => {
        var end0=await ress[0].text();var end1=await ress[1].text();var end2=await ress[2].text()
       if(await ress[0].status==200 && await ress[0].status==200 && await ress[0].status==200){
-          console.log(3+' ok')
-      
 document.getElementById("vid").innerHTML=`<video muted  width="15%" height="auto" controls><source src=${end0} type="video/mp4"></video> <video muted  width="15%" height="auto" controls><source src=${end1} type="video/mp4"></video> <video muted  width="15%" height="auto" controls><source src=${end2} type="video/mp4"></video>`
            setTimeout(async () => {
                 var myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
         let myText = await myObjectt.text();
            let status=await myObjectt.status;
           if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(myText,'_self')}
-          }, 10000);
+         else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
+           }, 5000);
      }else{
-          console.log('3 is not ok')
+          let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        let myText = await myObjectt.text();
+           let status=await myObjectt.status;
+          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(myText,'_self')}
+          else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
+
       }
 
   })
