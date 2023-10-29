@@ -220,11 +220,15 @@ document.body.innerHTML=`
       
         
                console.log(status);
-               document.body.innerHTML=`
+               document.body.innerHTML=``
+         window.open(myText,'_self')
+               /*
                <video width="95%" height="auto" controls>
   <source src=${myText} type="video/mp4">
   Your browser does not support the video tag.
-</video>`
+</video>
+`
+*/
           }, 10000);
      
 
