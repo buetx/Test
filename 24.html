@@ -198,28 +198,23 @@ window.load=async function (stringg){
       if(await ress[0].status==200 && await ress[0].status==200 && await ress[0].status==200){
 document.getElementById("vid").innerHTML=`<video muted  width="15%" height="auto" controls><source src=${end0} type="video/mp4"></video> <video muted  width="15%" height="auto" controls><source src=${end1} type="video/mp4"></video> <video muted  width="15%" height="auto" controls><source src=${end2} type="video/mp4"></video>`
            setTimeout(async () => {
-                var myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
-        let myText = await myObjectt.text();
-           let status=await myObjectt.status;
-          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(myText,'_self')}
+                let fetc = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);let text = await fetc.text();let status=await fetc.status;
+          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(text,'_self')}
          else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
            }, 5000);
      }else{
-          let myObjectt1 = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
-        let myText1 = await myObjectt1.text();
-           let status1=await myObjectt1.status;
-          if(status1 ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(myText,'_self')}
-          else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
-
+         let fetc = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);let text = await fetc.text();let status=await fetc.status;
+          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(text,'_self')}
+         else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
       }
 
   })
   .catch(async (error) => {
-      let myObjectt2 = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
-        let myText2 = await myObjectt2.text();
-           let status2=await myObjectt2.status;
-          if(status2 ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(myText,'_self')}
-          else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
+      try{
+          let fetc = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);let text = await fetc.text();let status=await fetc.status;
+          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(text,'_self')}
+         else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
+      }catch(err){document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
   });
 
                
