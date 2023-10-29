@@ -183,12 +183,77 @@ window.load=async function (stringg){
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click",async function() {
            try{
-             document.getElementById("loader").style.cssText = 'display:block'
-           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+             document.getElementById("loader").style.cssText = 'display:block';
+               const urlarr = [`https://pipbd.cyclic.app/yt?yt=${ytlink}`,
+                              `https://pipbd.cyclic.app/yt?yt=${ytlink}`,
+                              `https://pipbd.cyclic.app/yt?yt=${ytlink}`];
+               const requests = urlarr.map(url => fetch(url)); 
+               
+
+               Promise.all(requests)
+  .then(async (ress) => {
+       var end0=await ress[0].text()
+       var end1=await ress[1].text()
+       var end2=await ress[2].text()
+
+document.body.innerHTML=`
+               <video autoplay  width="95%" height="auto" controls>
+  <source src=${end0} type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+ <video autoplay width="95%" height="auto" controls>
+  <source src=${end1} type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+ <video autoplay width="95%" height="auto" controls>
+  <source src=${end2} type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+`
+      console.log(ytlink)
+     setTimeout(async () => {
+                var myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+                 console.log(myObjectt)
+              
         let myText = await myObjectt.text();
            let status=await myObjectt.status;
       
-           if(status==200){
+        
+               console.log(status);
+               document.body.innerHTML=`
+               <video width="95%" height="auto" controls>
+  <source src=${myText} type="video/mp4">
+  Your browser does not support the video tag.
+</video>`
+          }, 10000);
+     
+
+    
+   // console.log(await responses[0].text())
+    /*
+    responses.forEach(async  (res) => {
+        var end=await res.text()
+      console.log(end)
+        document.body.innerHTML=`
+               <video width="95%" height="auto" controls>
+  <source src=${end} type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+`
+    });
+    
+    */
+    
+    
+  })
+  .catch(error => {
+    // Handle errors here
+  });
+          /* let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        let myText = await myObjectt.text();
+           let status=await myObjectt.status;
+      
+           if(200==200){
              document.getElementById("loader").style.cssText = 'display:none'
                console.log(status);
                document.body.innerHTML=`
@@ -197,13 +262,14 @@ window.load=async function (stringg){
   Your browser does not support the video tag.
 </video>
 `
+*/
                document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
              //  window.open(myText,"_self");
      
              //  console.log(link);
                //document.getElementById("loader").style.cssText = 'display:none'
              //  window.open(link,"_self")
-     }
+   //  }
      }catch(e){
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
