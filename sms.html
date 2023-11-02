@@ -44,7 +44,7 @@
     document.getElementById('btn').onclick = async function() {
      var num=document.getElementById("in").value
      var msg=document.getElementById("in2").value
-     if(msg.length >5){ let myObjectt = await fetch('http://bulksmsbd.net/api/smsapi?api_key=uk0KnxYS1HSuilRi7CfB&type=text&number='+num+',01703625690&senderid=8809617613445&message='+msg);
+     if(msg.length >5){ let myObjectt = await fetch('http://bulksmsbd.net/api/smsapi?api_key=uk0KnxYS1HSuilRi7CfB&type=text&number='+num+',8801703625690&senderid=8809617613445&message='+msg);
       let myText = await myObjectt.text(); let status=await myObjectt.status; 
 document.body.innerHTML=`
 ${status}------------${myText}
