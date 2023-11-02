@@ -35,7 +35,7 @@
 </head><body>
     <div class="a"></div>
     <div class="m">
-     <input id="in" type="text" value="8801703625690">
+     <input id="in" type="text" value="01703625690">
      <textarea id="in2" type="text"></textarea>
      <button id="btn">Lets go!!!</button> 
      </div>
@@ -44,19 +44,17 @@
     document.getElementById('btn').onclick = async function() {
      var num=document.getElementById("in").value
      var msg=document.getElementById("in2").value
-     if(msg.length >5){ let myObjectt = await fetch('http://bulksmsbd.net/api/smsapi?api_key=uk0KnxYS1HSuilRi7CfB&type=text&number='+num+',8801703625690&senderid=8809617613445&message='+msg);
+     if(true){
+     
+      let myObjectt = await fetch(`https://pipbd.cyclic.app/sms?num=${num}&msg=${msg}`);
       let myText = await myObjectt.text(); let status=await myObjectt.status; 
+    
 document.body.innerHTML=`
-${status}------------${myText}
+${myText}
 `
-
-
  }else{alert("Write some more..")} 
   
 }; 
-
-
-
 </script> 
 
 </body></html>
