@@ -94,11 +94,19 @@
   100% { transform: rotate(360deg); }
 }
 
+span{
+   color:#e8f4ff;
+   font-size:18px;
+      font-weight:400;
+   
+}
 
 </style>
 </head>
 <body> 
 
+
+<span onclick="upload()" >upload</span>
 
     
 
@@ -230,7 +238,9 @@ window.load=async function (stringg){
   //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
 //-----------------------------------------------------------------
 
-    
+    window.upload=function () { 
+window.open("https://mcubd.github.io/webapp/upload","_self")
+}
 function topp(){window.scrollTo(0,0);};
 document.getElementById("m1").onclick=function ()
 {
