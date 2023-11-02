@@ -46,34 +46,24 @@ window.gotfile=function (e) {
       
 
       uploadtusk.on("state_changed", (snapshot) => {
-        const percent = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-        console.log(percent)
-       // document.getElementById('progress').style.width = ////percent + '%'
-       // document.getElementById('two').innerText = percent + '%'
-
+        
       }, (err) => {
-        console.log(err)
+        
 
       }, () => {
         uploadtusk.snapshot.ref.getDownloadURL().then((url) => {
-          console.log(url)
+          
 
-        
-                
-              var xhttp = new XMLHttpRequest();
-      xhttp.open("POST", 'https://gifted-pear-loincloth.cyclic.cloud/chatdata', true);
-             xhttp.send(JSON.stringify({
-        "data": url,"media":"img", "fname": "fname" }));
-
+              
             }).catch((e) => { console.log(e) })
           }
 
         }).catch((err) => {
-          console.log(err)
+          
         })
       })
 
-    }
+    } //gotfile
 
 </script>
 </body>
