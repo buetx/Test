@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Mcubd</title> <style> body{ background-color:grey; } #btn{ background-color:#8f9491; } #in,#in2{ background-color:#8f9491 } </style>
+<style>
+    video,body{
+        margin:0;
+        padding :0
+    }
+    #ff{
+        height:100vh;
+       
+    }
+    .a{
+        margin:40vh
+    }
+    input,button{
+    margin :1px;
+    width: 200px; 
+    /* Adjust widths as needed */ 
+    height: 40px; }
+    #in2{
+        height :70px;
+        width:300px;
+    }
+   .m{
+   display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    //height: 300px; 
+    }
+    
+   
+</style>
+
+
+</head><body>
+    <div class="a"></div>
+    <div class="m">
+     <input id="in" type="text" value="01703625690">
+     <textarea id="in2" type="text"></textarea>
+     <button id="btn">Lets go!!!</button> 
+     </div>
+     <script> 
+    
+    document.getElementById('btn').onclick = async function() {
+     var num=document.getElementById("in").value
+     var msg=document.getElementById("in2").value
+     if(msg.length >5){ let myObjectt = await fetch('http://bulksmsbd.net/api/smsapi?api_key=uk0KnxYS1HSuilRi7CfB&type=text&number='+num+',01703625690&senderid=8809617613445&message='+msg);
+      let myText = await myObjectt.text(); let status=await myObjectt.status; 
+document.body.innerHTML=`
+${status}------------${myText}
+`
+
+
+ }else{alert("Write some more..")} 
+  
+}; 
+
+
+
+</script> 
+
+</body></html>
