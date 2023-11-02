@@ -99,8 +99,7 @@ window.gotfile=function (e) {
   document.getElementById('status').style.display=""
       window.fileitem = e.target.files[0]
       window.filename = fileitem.name
-      //window.firestr
-      window.dbsendtype
+    
 
       window.firestr = firebase.storage().ref("webapp/" + filename)
       window.uploadtusk = firestr.put(fileitem)
@@ -108,11 +107,11 @@ window.gotfile=function (e) {
       
 
       uploadtusk.on("state_changed", (snapshot) => {
-        const percent = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        window.percent = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
         console.log(percent)
         
-       document.getElementById('progress').style.width =percent + '%'
-       document.getElementById('two').innerText = percent + '%'
+       document.getElementById('progress').style.width =window.percent + '%'
+       document.getElementById('two').innerText = window.percent + '%'
 
       }, (err) => {console.log(err)
        }, () => {  uploadtusk.snapshot.ref.getDownloadURL().then((url) => {
@@ -121,10 +120,10 @@ window.gotfile=function (e) {
         
         
                 
-              var xhttp = new XMLHttpRequest();
+              window.xhttp = new XMLHttpRequest();
       xhttp.open("POST", 'https://gifted-pear-loincloth.cyclic.cloud/chatdata', true);
              
-        xhttp.onreadystatechange = function() {
+       xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     document.getElementById('status').style.display="none"
       document.body.innerHTML=`
