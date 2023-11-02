@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Chat</title>
+  <meta http-equiv="Cache-control" content="public">
+  <link href="1.css" rel="stylesheet">
+  <script src="./lottie-player.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+</head>
+
+<body>
+
+
+<input id="f" onchange="gotfile(event)" type="file" />
+
+
+
+<script type="module">
+    
+    
+  window.firebaseConfig = {
+    apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
+    authDomain: "test2-5bbd8.firebaseapp.com",
+    databaseURL: "https://test2-5bbd8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "test2-5bbd8",
+    storageBucket: "test2-5bbd8.appspot.com",
+    messagingSenderId: "683307239625",
+    appId: "1:683307239625:web:d28ed1c2fb6b31dd4e6518"
+  };
+  setTimeout(() => { firebase.initializeApp(firebaseConfig); }, 2000);
+
+
+window.gotfile=function (e) {
+      window.fileitem = e.target.files[0]
+      window.filename = fileitem.name
+      //window.firestr
+      window.dbsendtype
+
+      window.firestr = firebase.storage().ref("chat/" + filename)
+      window.uploadtusk = firestr.put(fileitem)
+
+      
+
+      uploadtusk.on("state_changed", (snapshot) => {
+        const percent = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        console.log(percent)
+       // document.getElementById('progress').style.width = ////percent + '%'
+       // document.getElementById('two').innerText = percent + '%'
+
+      }, (err) => {
+        console.log(err)
+
+      }, () => {
+        uploadtusk.snapshot.ref.getDownloadURL().then((url) => {
+          console.log(url)
+
+        
+                
+              var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", 'https://gifted-pear-loincloth.cyclic.cloud/chatdata', true);
+             xhttp.send(JSON.stringify({
+        "data": url,"media":"img", "fname": "fname" }));
+
+            }).catch((e) => { console.log(e) })
+          }
+
+        }).catch((err) => {
+          console.log(err)
+        })
+      })
+
+    }
+
+</script>
+</body>
+
+</html>
