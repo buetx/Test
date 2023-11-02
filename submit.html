@@ -10,9 +10,58 @@
   <link href="1.css" rel="stylesheet">
   <script src="./lottie-player.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+<style>
+   .two{
+            font-size:54%;
+            position: absolute;
+            /* float: right; */
+            top: 50%;
+            right: 2%;
+            transform: translateY(-50%);
+      }
+
+   #status{
+            width: calc(70vw);
+            height: calc(6vh);
+            background-color: #525151;
+            color: #f5f5f5;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+      }
+
+      .bar{
+            height: calc(1vh);
+            width: calc(60vw);
+            border-radius:4px;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-55%, -50%);
+      }
+      .progress{
+            background:#141515;
+            border-radius: 4px;
+            height: 100%;
+            width: 0%;
+
+
+      }
+</style>
+  
 </head>
 
 <body>
+
+   <div id="status" style="display:none;">
+      <div class="bar">
+        <div id="progress" class="progress"></div>
+      </div>
+      <span id="two" class="upspan two">0%</span>
+    </div>
+
 
 
 <input id="f" onchange="gotfile(event)" type="file" />
@@ -20,8 +69,6 @@
 
 
 <script type="module">
-    
-    
   window.firebaseConfig = {
     apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
     authDomain: "test2-5bbd8.firebaseapp.com",
@@ -35,6 +82,7 @@
 
 
 window.gotfile=function (e) {
+  document.getElementById('status').style.display=""
       window.fileitem = e.target.files[0]
       window.filename = fileitem.name
       //window.firestr
@@ -46,24 +94,39 @@ window.gotfile=function (e) {
       
 
       uploadtusk.on("state_changed", (snapshot) => {
+        const percent = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        console.log(percent)
         
-      }, (err) => {
+       document.getElementById('progress').style.width =percent + '%'
+       document.getElementById('two').innerText = percent + '%'
+
+      }, (err) => {console.log(err)
+       }, () => {  uploadtusk.snapshot.ref.getDownloadURL().then((url) => {
+          console.log(url)
+        document.getElementById('status').style.display="none"
         
+        
+                
+              var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", 'https://gifted-pear-loincloth.cyclic.cloud/chatdata', true);
+             
+        xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.body.innerHTML=`
+      <h1>Uploaded!</h1>
+      `
+    }
+};
 
-      }, () => {
-        uploadtusk.snapshot.ref.getDownloadURL().then((url) => {
-          
+  
+  xhttp.send(JSON.stringify({
+        "data": url,"media":"img", "fname": "fname" }));
 
-              
             }).catch((e) => { console.log(e) })
-          }
-
-        }).catch((err) => {
           
-        })
-      })//gotdownloadurl
+      })
 
-    } //gotfile
+    }
 
 </script>
 </body>
