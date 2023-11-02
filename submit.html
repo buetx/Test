@@ -11,6 +11,10 @@
   <script src="./lottie-player.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 <style>
+    body{
+        margin:0;
+        background-color:#e8f4ff;
+    }
    .two{
             font-size:54%;
             position: absolute;
@@ -49,6 +53,11 @@
 
 
       }
+      body, html { height: 100%; margin: 0; display: grid; place-items: center; }
+      
+      input{
+          display:none
+      }
 </style>
   
 </head>
@@ -63,12 +72,16 @@
     </div>
 
 
+<img onclick="imageClicked()"  height="200px" id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1avP0eH3f8aMfgPEAW49KqyCqEZZAuX-XHg&usqp=CAU" alt="">
+<input id="f" onchange="gotfile(event)" type="file" accept="image/*" />
 
-<input id="f" onchange="gotfile(event)" type="file" />
 
 
 
 <script type="module">
+    window.imageClicked=function (){
+        document.getElementById("f").click()
+    }
   window.firebaseConfig = {
     apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
     authDomain: "test2-5bbd8.firebaseapp.com",
@@ -88,7 +101,7 @@ window.gotfile=function (e) {
       //window.firestr
       window.dbsendtype
 
-      window.firestr = firebase.storage().ref("chat/" + filename)
+      window.firestr = firebase.storage().ref("webapp/" + filename)
       window.uploadtusk = firestr.put(fileitem)
 
       
