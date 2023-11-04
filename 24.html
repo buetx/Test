@@ -82,7 +82,7 @@
   animation: spin 2s linear infinite;
   z-index:1;
     margin: auto;
-       position: fixed;
+       position: absolute;
        top: 0; 
        left: 0;
        bottom: 0; 
@@ -97,7 +97,6 @@
 </style>
 </head>
 <body> 
-   
 
 
     
@@ -172,7 +171,7 @@ window.load=async function (stringg){
                    //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
 
     function step3(clicked) {
-    document.body.innerHTML=` <div style="display: none;" id="vid"></div> <h1>${clicked}</h1><div  id="3rd"></div>`
+    document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
      let loader = document.createElement("div");
     loader.setAttribute('class', 'loader')
     loader.setAttribute('id', 'loader')
@@ -184,45 +183,32 @@ window.load=async function (stringg){
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click",async function() {
            try{
-             document.getElementById("loader").style.cssText = 'display:block';
-
-
-
-
-               
-               const urlarr = [`https://pipbd.cyclic.app/yt?yt=${ytlink}`,`https://pipbd.cyclic.app/yt?yt=${ytlink}`,`https://pipbd.cyclic.app/yt?yt=${ytlink}`];
-               const requests = urlarr.map(url => fetch(url)); 
-               Promise.all(requests)
-  .then(async (ress) => {
-       var end0=await ress[0].text();var end1=await ress[1].text();var end2=await ress[2].text()
-      if(await ress[0].status==200 && await ress[0].status==200 && await ress[0].status==200){
-document.getElementById("vid").innerHTML=`<video muted  width="15%" height="auto" controls><source src=${end0} type="video/mp4"></video> <video muted  width="15%" height="auto" controls><source src=${end1} type="video/mp4"></video> <video muted  width="15%" height="auto" controls><source src=${end2} type="video/mp4"></video>`
-           setTimeout(async () => {
-                let fetc = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);let text = await fetc.text();let status=await fetc.status;
-          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(text,'_self')}
-         else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
-           }, 5000);
-     }else{
-         let fetc = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);let text = await fetc.text();let status=await fetc.status;
-          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(text,'_self')}
-         else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
-      }
-
-  })
-  .catch(async (error) => {
-      try{
-          let fetc = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);let text = await fetc.text();let status=await fetc.status;
-          if(status ==200){document.getElementById("loader").style.cssText = 'display:none';window.open(text,'_self')}
-         else{document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
-      }catch(err){document.getElementById("loader").style.cssText = 'display:none';window.open(link,"_self")}
-  });
-
-               
+             document.getElementById("loader").style.cssText = 'display:block'
+           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        let myText = await myObjectt.text();
+           let status=await myObjectt.status;
+      
+           if(status==200){
+             document.getElementById("loader").style.cssText = 'display:none'
+               console.log(status);
+               document.body.innerHTML=`
+               <video width="95%" height="auto" controls>
+  <source src=${myText} type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+`
+               document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
+             //  window.open(myText,"_self");
+     
+             //  console.log(link);
+               //document.getElementById("loader").style.cssText = 'display:none'
+             //  window.open(link,"_self")
+     }
      }catch(e){
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
                
-              window.open(link,"_self")
+            //   window.open(link,"_self")
      }
            
        
