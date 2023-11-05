@@ -200,21 +200,25 @@ window.load=async function (stringg){
            if(status==200){
              document.getElementById("loader").style.cssText = 'display:none'
                console.log(status);
-             let win =   window.open(myText,"_blank");
-               let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
+             let win =   window.open(myText,"_self");
+               setTimeout(function() {
+               document.body.innerHTML=`<p id='dwn'>Download Started!</p>` }, 1500);
+               //let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
            }else{
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
-               let win =   window.open(link,"_blank");
-               let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
+               let win =   window.open(link,"_self");
+             setTimeout(function() {  document.body.innerHTML=`<p id='dwn'>Download Started!</p>`}, 1500);
+               //let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
        
            }
      }catch(e){
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
                
-               let win =   window.open(link,"_blank");
-               let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
+               let win =   window.open(link,"_self");
+             setTimeout(function() {  document.body.innerHTML=`<p id='dwn'>Download Started!</p>`}, 1500);
+               //let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
        
      }
            
