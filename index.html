@@ -200,17 +200,22 @@ window.load=async function (stringg){
            if(status==200){
              document.getElementById("loader").style.cssText = 'display:none'
                console.log(status);
-               window.open(myText,"_self");
+             let win =   window.open(myText,"_blank");
+               let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
            }else{
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
-               window.open(link,"_self")
+               let win =   window.open(link,"_blank");
+               let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
+       
            }
      }catch(e){
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
                
-               window.open(link,"_self")
+               let win =   window.open(link,"_blank");
+               let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
+       
      }
            
        
