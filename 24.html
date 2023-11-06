@@ -171,7 +171,7 @@ window.load=async function (stringg){
                    //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
 
     function step3(clicked) {
-    document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
+    document.body.innerHTML=`<div id='vid'></div><h1>${clicked}</h1><div  id="3rd"></div>`
      let loader = document.createElement("div");
     loader.setAttribute('class', 'loader')
     loader.setAttribute('id', 'loader')
@@ -191,13 +191,13 @@ window.load=async function (stringg){
            if(status==200){
              document.getElementById("loader").style.cssText = 'display:none'
                console.log(status);
-               document.body.innerHTML=`
+               document.getElementById('vid').innerHTML=`
                <video width="95%" height="auto" controls>
   <source src=${myText} type="video/mp4">
   Your browser does not support the video tag.
 </video>
 `
-               document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
+             //  document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
              //  window.open(myText,"_self");
      
              //  console.log(link);
