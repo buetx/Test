@@ -221,17 +221,15 @@ window.load=async function (stringg){
    document.body.append(loader)
    for (let i = 0; i < Object.keys(raww[clicked]).length ; i++) {
     (function (link,ytlink,sheet){
-      let h4 = document.createElement("h4");
-    h4.setAttribute('class', 'h4')
+      let h4 = document.createElement("a");
+    h4.setAttribute('href', '#4')
        h4.addEventListener("click",async function() {
            try{
-             document.getElementById("loader").style.cssText = 'display:block'
-           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
-        let myText = await myObjectt.text();
-           let status=await myObjectt.status;
-      
-           if(status==200){
-             document.getElementById("loader").style.cssText = 'display:none'
+        //      document.getElementById("loader").style.cssText = 'display:block'
+        //    let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        // let myText = await myObjectt.text();
+        //    let status=await myObjectt.status;
+        document.getElementById("loader").style.cssText = 'display:none'
                console.log(status);
                document.getElementById('sheet').innerHTML=`
                <a href="#4">Practice Sheet</a>
@@ -240,12 +238,9 @@ window.load=async function (stringg){
                <iframe src="${sheet}" width="100%" height="100vh" 
  type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
                `
-               document.getElementById('vid').innerHTML=`
-               <video width="95%" height="auto" controls>
-  <source src=${myText} type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-`
+           if(200==200){
+
+
              //  document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
              //  window.open(myText,"_self");
      
