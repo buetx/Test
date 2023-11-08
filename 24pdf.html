@@ -249,12 +249,10 @@
 
                
                 console.log(status);
-                document.getElementById('sheet').innerHTML = `
-               <a href="#4">Practice Sheet</a>
-               `
+
                 document.getElementById('4th').innerHTML = `
                <iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
- type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
+ type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
                `
                calculateLoadPercentage()
 
@@ -299,6 +297,7 @@
         iframe.addEventListener('load', function () {
           console.log('Content loaded!');
           document.getElementById("loader").style.cssText = 'display:none'
+          document.getElementById("back").style.cssText = 'display:block'
           setTimeout(function () {
             // Calculate an estimation of content loaded
             console.log('Estimated load percentage: 100%');
