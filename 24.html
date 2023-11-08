@@ -55,7 +55,10 @@
       background-attachment: fixed; 
       font-family: 'Noto Sans Bengali', sans-serif;
     }
-   #p1,#p2,#m1,#m2,#b1,#b2,#c1,#c2,#ul>li,h4{
+   a,h4{
+    text-decoration: none !important;
+    display: block;
+    color: rgb(0, 0, 0);
       background: rgba(255,255,255,0.7);
       filter: blur(.00001px);
       border-radius: 2px;
@@ -101,23 +104,30 @@ position: fixed;
             
         }
 
+        a{
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
 
 </style>
 </head>
 <body> 
 
 
-    
-
-<h1  id="p1">Physics 1st paper </h1>
-<h1  id="p2">Physics 2nd paper </h1>
-<h1  id="c1">Chemistry 1st paper </h1>
-<h1  id="c2">Chemistry 2nd paper </h1>
-<h1  id="b1">Biology  1st paper </h1>
-<h1  id="b2">Biology 2nd paper </h1>
-<h1  id="m1">Math 1st paper </h1>
-<h1  id="m2">Math 2nd paper </h1>
-
+    <div id="2nd"></div>
+    <div id="3rd"></div>
+<div id="1st">
+<a href="#2"  id="p1">Physics 1st paper </a>
+<a href="#2"  id="p2">Physics 2nd paper </a>
+<a href="#2"  id="c1">Chemistry 1st paper </a>
+<a href="#2"  id="c2">Chemistry 2nd paper </a>
+<a href="#2"  id="b1">Biology  1st paper </a>
+<a href="#2"  id="b2">Biology 2nd paper </a>
+<a href="#2"  id="m1">Math 1st paper </a>
+<a href="#2"  id="m2">Math 2nd paper </a>
+</div>
 
 
     
@@ -179,7 +189,7 @@ window.load=async function (stringg){
                    //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
 
     function step3(clicked) {
-    document.body.innerHTML=`<div id='vid'></div><h1>${clicked}</h1><div  id="3rd"></div>`
+    document.getElementById('3rd').innerHTML=`<div id='vid'></div><h1>${clicked}</h1><div  id="3rd"></div>`
      let loader = document.createElement("div");
     loader.setAttribute('class', 'loader')
     loader.setAttribute('id', 'loader')
@@ -245,38 +255,62 @@ window.load=async function (stringg){
   //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
 //-----------------------------------------------------------------
 */
+
+function handleHashChange() {
+      var hash = window.location.hash.substring(1); // Extract the hash value
+
+      // Display content based on the hash value
+      console.log(hash)
+
+      
+      if (hash === "1" || hash=="") {
+        document.getElementById('1st').style.cssText=`display:block`;
+        document.getElementById('2nd').style.cssText=`display:none`;
+        document.getElementById('3rd').style.cssText=`display:none`
+      }else if(hash === "2") {
+        document.getElementById('1st').style.cssText=`display:none`;
+        document.getElementById('2nd').style.cssText=`display:block`;
+        document.getElementById('3rd').style.cssText=`display:none`
+      }else if(hash === "3"){
+        document.getElementById('1st').style.cssText=`display:none`;
+        document.getElementById('2nd').style.cssText=`display:none`;
+        document.getElementById('3rd').style.cssText=`display:block`
+      }
+    }
+    window.onhashchange = handleHashChange;
     
 function topp(){window.scrollTo(0,0);};
 document.getElementById("m1").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >ম্যাট্রিক্স ও নির্ণায়ক</li>
-    <li >সরলরেখা</li>
-    <li >বৃত্ত</li>
-    <li >ত্রিকোণমিতি</li>
-    <li >অন্তরীকরণ</li>
-    <li >যোগজীকরণ</li>
-    </ul>
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+    <a href="#3">ম্যাট্রিক্স ও নির্ণায়ক</a>
+    <a href="#3">সরলরেখা</a>
+    <a href="#3">বৃত্ত</a>
+    <a href="#3">ত্রিকোণমিতি</a>
+    <a href="#3">অন্তরীকরণ</a>
+    <a href="#3">যোগজীকরণ</a>
+    </div>
     `
+    
     
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {console.log(event.target.innerHTML);step3(event.target.innerHTML);}
 
 };
 
 document.getElementById("m2").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >জটিল সংখ্যা</li>
-    <li >বহুপদী সমীকরণ</li>
-    <li >কণিক</li>
-    <li >বিপরীত ত্রিকোণমিতি</li>
-    <li >স্থিতিবিদ্যা</li>
-    <li >গতিবিদ্যা</li>
-    </ul>`
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+    <a href="#3">জটিল সংখ্যা</a>
+    <a href="#3">বহুপদী সমীকরণ</a>
+    <a href="#3">কণিক</a>
+    <a href="#3">বিপরীত ত্রিকোণমিতি</a>
+    <a href="#3">স্থিতিবিদ্যা</a>
+    <a href="#3">গতিবিদ্যা</a>
+    </div>`
     setTimeout(topp, 10);
     document.getElementById('ul')
     .onclick = function(event) {step3(event.target.innerHTML);}
@@ -284,16 +318,16 @@ document.getElementById("m2").onclick=function ()
 
 document.getElementById("p1").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >ভেক্টর</li>
-    <li >নিউটনিয়ান বলবিদ্যা</li>
-    <li >কাজ, শক্তি ও ক্ষমতা</li>
-    <li >মহাকর্ষ ও অভিকর্ষ</li>
-    <li >পদার্থের গাঠনিক ধর্ম</li>
-    <li >পর্যাবৃত্ত গতি</li>
-    <li >আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব</li>
-    </ul>
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+     <a href="#3">ভেক্টর</a>
+     <a href="#3">নিউটনিয়ান বলবিদ্যা</a>
+     <a href="#3">কাজ, শক্তি ও ক্ষমতা</a>
+     <a href="#3">মহাকর্ষ ও অভিকর্ষ</a>
+     <a href="#3">পদার্থের গাঠনিক ধর্ম</a>
+     <a href="#3">পর্যাবৃত্ত গতি</a>
+     <a href="#3">আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব</a>
+    </div>
     `
 
     setTimeout(topp, 10);
@@ -304,16 +338,16 @@ document.getElementById("p1").onclick=function ()
 
 document.getElementById("p2").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >তাপগতিবিদ্যা</li>
-    <li >স্থির তড়িৎ</li>
-    <li >চলতড়িৎ</li>
-    <li >ভৌত আলোকবিজ্ঞান</li>
-    <li >আধুনিক পদার্থবিজ্ঞানের সূচনা</li>
-    <li >পরমাণুর মডেল এবং নিউক্লিয়ার পদার্থবিজ্ঞান</li>
-    <li >সেমিকন্ডাক্টর ও ইলেকট্রনিকস</li>
-    </ul>
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+     <a href="#3">তাপগতিবিদ্যা</a>
+     <a href="#3">স্থির তড়িৎ</a>
+     <a href="#3">চলতড়িৎ</a>
+     <a href="#3">ভৌত আলোকবিজ্ঞান</a>
+     <a href="#3">আধুনিক পদার্থবিজ্ঞানের সূচনা</a>
+     <a href="#3">পরমাণুর মডেল এবং নিউক্লিয়ার পদার্থবিজ্ঞান</a>
+     <a href="#3">সেমিকন্ডাক্টর ও ইলেকট্রনিকস</a>
+    </div>
     `
    
     setTimeout(topp, 10);
@@ -324,14 +358,14 @@ document.getElementById("p2").onclick=function ()
 
 document.getElementById("c1").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >ল্যাবরেটরির নিরাপদ ব্যবহার</li>
-    <li >গুণগত রসায়ন</li>
-    <li >মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন</li>
-    <li >রাসায়নিক পরিবর্তন</li>
-    <li >কর্মমুখী রসায়ন</li>
-    </ul>
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+     <a href="#3">ল্যাবরেটরির নিরাপদ ব্যবহার</a>
+     <a href="#3">গুণগত রসায়ন</a>
+     <a href="#3">মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন</a>
+     <a href="#3">রাসায়নিক পরিবর্তন</a>
+     <a href="#3">কর্মমুখী রসায়ন</a>
+    </div>
     `
    
     setTimeout(topp, 10);
@@ -342,14 +376,14 @@ document.getElementById("c1").onclick=function ()
 
 document.getElementById("c2").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >পরিবেশ রসায়ন</li>
-    <li >জৈব রসায়ন</li>
-    <li >পরিমাণগত রসায়ন</li>
-    <li >তড়িৎ রসায়ন</li>
-    <li >অর্থনৈতিক রসায়ন</li>
-    </ul>
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+     <a href="#3">পরিবেশ রসায়ন</a>
+     <a href="#3">জৈব রসায়ন</a>
+     <a href="#3">পরিমাণগত রসায়ন</a>
+     <a href="#3">তড়িৎ রসায়ন</a>
+     <a href="#3">অর্থনৈতিক রসায়ন</a>
+    </div>
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
@@ -359,21 +393,21 @@ document.getElementById("c2").onclick=function ()
 
 document.getElementById("b1").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >কোষ ও এর গঠন</li>
-    <li >কোষ বিভাজন</li>
-    <li >কোষ রসায়ন</li>
-    <li >অণুজীব</li>
-    <li >শৈবাল ও ছত্রাক</li>
-    <li >ব্রায়োফাইটা ও টেরেডোফাইটা</li>
-    <li >নগ্নবীজী ও আবৃতবীজী উদ্ভিদ</li>
-    <li >টিস্যু ও টিস্যুতন্ত্র</li>
-    <li >উদ্ভিদ শারীরতত্ত্ব</li>
-    <li >উদ্ভিদ প্রজনন</li>
-    <li >জীবপ্রযুক্তি</li>
-    <li >জীবের পরিবেশ, বিস্তার ও সংরক্ষণ</li>
-    </ul>
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+     <a href="#3">কোষ ও এর গঠন</a>
+     <a href="#3">কোষ বিভাজন</a>
+     <a href="#3">কোষ রসায়ন</a>
+     <a href="#3">অণুজীব</a>
+     <a href="#3">শৈবাল ও ছত্রাক</a>
+     <a href="#3">ব্রায়োফাইটা ও টেরেডোফাইটা</a>
+     <a href="#3">নগ্নবীজী ও আবৃতবীজী উদ্ভিদ</a>
+     <a href="#3">টিস্যু ও টিস্যুতন্ত্র</a>
+     <a href="#3">উদ্ভিদ শারীরতত্ত্ব</a>
+     <a href="#3">উদ্ভিদ প্রজনন</a>
+     <a href="#3">জীবপ্রযুক্তি</a>
+     <a href="#3">জীবের পরিবেশ, বিস্তার ও সংরক্ষণ</a>
+    </div>
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
@@ -383,21 +417,21 @@ document.getElementById("b1").onclick=function ()
 
 document.getElementById("b2").onclick=function ()
 {
-  document.body.innerHTML=`
-    <ul id="ul">
-    <li >প্রাণীর বিভিন্নতা ও শ্রেণিবিন্যাস</li>
-    <li >প্রাণীর পরিচিতি</li>
-    <li >পরিপাক ও শোষণ</li>
-    <li >রক্ত সঞ্চালন</li>
-    <li >শ্বাসক্রিয়া ও শ্বসন</li>
-    <li >বর্জ্য ও নিষ্কাশন</li>
-    <li >চলন ও অঙ্গচালনা</li>
-    <li >সমন্বয় ও নিয়ন্ত্রণ</li>
-    <li >মানব জীবনের ধারাবাহিকতা</li>
-    <li >মানবদেহের প্রতিরক্ষা</li>
-    <li >জীনতত্ত্ব ও বিবর্তন</li>
-    <li >প্রানির আচরণ</li>
-    </ul>
+  document.getElementById('2nd').innerHTML=`
+    <div id="ul">
+     <a href="#3">প্রাণীর বিভিন্নতা ও শ্রেণিবিন্যাস</a>
+     <a href="#3">প্রাণীর পরিচিতি</a>
+     <a href="#3">পরিপাক ও শোষণ</a>
+     <a href="#3">রক্ত সঞ্চালন</a>
+     <a href="#3">শ্বাসক্রিয়া ও শ্বসন</a>
+     <a href="#3">বর্জ্য ও নিষ্কাশন</a>
+     <a href="#3">চলন ও অঙ্গচালনা</a>
+     <a href="#3">সমন্বয় ও নিয়ন্ত্রণ</a>
+     <a href="#3">মানব জীবনের ধারাবাহিকতা</a>
+     <a href="#3">মানবদেহের প্রতিরক্ষা</a>
+     <a href="#3">জীনতত্ত্ব ও বিবর্তন</a>
+     <a href="#3">প্রানির আচরণ</a>
+    </div>
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
