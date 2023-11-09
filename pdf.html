@@ -258,53 +258,23 @@
 
     const app = initializeApp(config);
     const database = getDatabase(app);
-
-    var glo
-
-
+    var glo;
     const dbRef = ref(getDatabase());
     get(child(dbRef, `multi/webapp/vpdf`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        //console.log(snapshot.val());
-        glo = snapshot.val()
-        console.log(glo)
-        load(glo)
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
+      if (snapshot.exists()) {glo = snapshot.val();load(glo);
+      } else {console.log("No data available");}
+    }).catch((error) => { console.error(error); });
 
-    const d3b = getDatabase();
-    const starCountRef = ref(d3b, 'multi/webapp/24');
-    onValue(starCountRef, (snapshot) => {
-
-      const data = snapshot.val();
-      //console.log(data)
-      //updateStarCount(postElement, data);
-    });
 
     window.load = async function (stringg) {
 
-
-
-
       window.raww = JSON.parse(stringg)
 
-      // alert(Object.keys(string))
-      // console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
-      // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0])
-      // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
-      //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
 
       function step3(clicked) {
         document.getElementById('3rd').innerHTML = `<div id='vid'></div><div id='sheet'></div><h1>${clicked}</h1><div  id="3rd"></div>`
-        let loader = document.createElement("div");
-        loader.setAttribute('class', 'loader')
-        loader.setAttribute('id', 'loader')
-        loader.style.cssText = 'display: none'
-        document.body.append(loader)
+        let loader = document.createElement("div");loader.setAttribute('class', 'loader');loader.setAttribute('id', 'loader');loader.style.cssText = 'display: none';document.body.append(loader)
+
         for (let i = 0; i < Object.keys(raww[clicked]).length; i++) {
           (function (sheet, prac, sol) {
             let h4 = document.createElement("a");
@@ -349,9 +319,6 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
 
                   document.getElementById("loader").style.cssText = 'display:block'
 
-
-
-                  console.log(sheet)
                   const regex = /d\/(.*?)\/preview/;
                   const match = sheet.match(regex);
                   document.getElementById('4th').innerHTML = `
@@ -377,31 +344,10 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
             document.getElementById('3rd').append(h4)
           })(raww[clicked][Object.keys(raww[clicked])[i]]["sheet"], raww[clicked][Object.keys(raww[clicked])[i]]["prac"], raww[clicked][Object.keys(raww[clicked])[i]]["sol"]);
 
-
-
-
-          //console.log(Object.keys(raww[clicked][Object.keys(raww[clicked])[0]]))
-          //console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
-          //  raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])]
         }
 
       };
-      // kskskdldkkdkdkdkdkkdkd 
-      /*
-      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
-      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
-      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
-      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]]))
-      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])
-      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
-      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])])
-      
-     // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
-  
-      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]["Youtube.com/1"])
-    //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
-  //-----------------------------------------------------------------
-  */
+ 
       function calculateLoadPercentage() {
         var iframe = document.getElementById('iframe');
         iframe.addEventListener('load', function () {
@@ -409,11 +355,6 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
           document.getElementById("loader").style.cssText = 'display:none'
           document.getElementById("back").style.cssText = 'display:block'
           document.getElementById("down").style.cssText = 'display:block'
-          setTimeout(function () {
-            // Calculate an estimation of content loaded
-            console.log('Estimated load percentage: 100%');
-            // You can update a progress bar or perform other actions based on your estimation
-          }, 1000); // Adjust this delay as necessary
         });
       }
 
@@ -455,6 +396,12 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
         }
       }
       window.onhashchange = handleHashChange;
+
+      setTimeout(() => {
+        const one = document.getElementById('1st');
+const val = one.getAttribute('display');
+console.log(val)
+      }, 100);
 
       function topp() { window.scrollTo(0, 0); };
       document.getElementById("m1").onclick = function () {
@@ -609,12 +556,6 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
       };
     }
 
-
-    window.startt = async function () {
-      let myObject = await fetch('https://pipbd.cyclic.app/gg');
-      let myText = await myObject.text();
-      console.log(myText);
-    }; startt()
 
   </script>
 </body>
