@@ -398,9 +398,11 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
       window.onhashchange = handleHashChange;
 
       setInterval(() => {
-        const one = document.getElementById('1st');
-const val = one.getAttribute('display');
-console.log(val)
+        const displayValue = window.getComputedStyle(document.getElementById('1st')).getPropertyValue('display');
+if(displayValue=='block'){
+  window.location.hash = '#1';
+}
+
       }, 100);
 
       function topp() { window.scrollTo(0, 0); };
