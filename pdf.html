@@ -161,6 +161,41 @@
     ::-webkit-scrollbar {
       width: 1px;
     }
+
+    #popup span{
+    margin-bottom: 20px;
+    display: block;
+}
+#popup{
+    display: none;
+    position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+     
+}
+#popup a{
+    text-decoration: none !important;
+    padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: auto !important;
+      
+}
+#popup a:first-of-type{
+    margin-right: 10px;
+}
   </style>
 </head>
 
@@ -169,6 +204,7 @@
   <div id="2nd"></div>
   <div id="3rd"></div>
   <div id="4th"></div>
+  <div id="popup"></div>
   <div id="1st">
     <a href="#2" id="p1">Physics 1st paper </a>
     <a href="#2" id="p2">Physics 2nd paper </a>
@@ -250,19 +286,39 @@
         for (let i = 0; i < Object.keys(raww[clicked]).length; i++) {
           (function (link, ytlink, sheet) {
             let h4 = document.createElement("a");
+            if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
+            h4.setAttribute('href', '#35')}else{
             h4.setAttribute('href', '#4')
+            }
             h4.addEventListener("click", async function () {
               try {
+
+                if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
+                  document.getElementById("popup").innerHTML=`
+                  <span>Select One</span><a id='prac' href="#4">Practice Sheet</a><a id='sol' href="#4">Solution Sheet</a>`;
+                   document.getElementById("popup").style.cssText = 'display:table';
+                   document.getElementById("prac").addEventListener("click", async function () {
+                    document.getElementById("loader").style.cssText = 'display:block'
+document.getElementById('4th').innerHTML = `
+<iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
+type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
+`
+calculateLoadPercentage()
+                   })
+                }else{
+
+                
                     document.getElementById("loader").style.cssText = 'display:block'
 
                
-                console.log(status);
+               
 
                 document.getElementById('4th').innerHTML = `
                <iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
  type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
                `
                calculateLoadPercentage()
+                }
 
               } catch (e) {
                 console.log(link);
@@ -325,22 +381,605 @@
           document.getElementById('2nd').style.cssText = `display:none`;
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:none`
+          document.getElementById('popup').style.cssText = `display:none`
         } else if (hash === "2") {
           document.getElementById('1st').style.cssText = `display:none`;
           document.getElementById('2nd').style.cssText = `display:block`;
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:none`
+          document.getElementById('popup').style.cssText = `display:none`
         } else if (hash === "3") {
           document.getElementById('1st').style.cssText = `display:none`;
           document.getElementById('2nd').style.cssText = `display:none`;
           document.getElementById('3rd').style.cssText = `display:block`
           document.getElementById('4th').style.cssText = `display:none`
+          document.getElementById('popup').style.cssText = `display:none`
         }
-        else if (hash === "4") {
+        else if (hash === "35" ) {
           document.getElementById('1st').style.cssText = `display:none`;
           document.getElementById('2nd').style.cssText = `display:none`;
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:block`
+        }else if (hash === "4" ) {
+          document.getElementById('1st').style.cssText = `display:none`;
+          document.getElementById('2nd').style.cssText = `display:none`;
+          document.getElementById('3rd').style.cssText = `display:none`
+          document.getElementById('4th').style.cssText = `display:none`
+        }
+      }
+      window.onhashchange = handleHashChange;
+
+      function topp() { window.scrollTo(0, 0); };
+      document.getElementById("m1").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+    <a href="#3">ম্যাট্রিক্স ও নির্ণায়ক</a>
+    <a href="#3">সরলরেখা</a>
+    <a href="#3">বৃত্ত</a>
+    <a href="#3">ত্রিকোণমিতি</a>
+    <a href="#3">অন্তরীকরণ</a>
+    <a href="#3">যোগজীকরণ</a>
+    </div>
+    `
+
+
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { console.log(event.target.innerHTML); step3(event.target.innerHTML); }
+
+      };
+
+      document.getElementById("m2").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+    <a href="#3">জটিল সংখ্যা</a>
+    <a href="#3">বহুপদী সমীকরণ</a>
+    <a href="#3">কণিক</a>
+    <a href="#3">বিপরীত ত্রিকোণমিতি</a>
+    <a href="#3">স্থিতিবিদ্যা</a>
+    <a href="#3">গতিবিদ্যা</a>
+    </div>`
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { step3(event.target.innerHTML); }
+      };
+
+      document.getElementById("p1").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+     <a href="#3">ভেক্টর</a>
+     <a href="#3">নিউটনিয়ান বলবিদ্যা</a>
+     <a href="#3">কাজ, শক্তি ও ক্ষমতা</a>
+     <a href="#3">মহাকর্ষ ও অভিকর্ষ</a>
+     <a href="#3">পদার্থের গাঠনিক ধর্ম</a>
+     <a href="#3">পর্যাবৃত্ত গতি</a>
+     <a href="#3">আদর্শ গ্যাস ও গ্যাসের গতিতত্ত্ব</a>
+    </div>
+    `
+
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { step3(event.target.innerHTML); }
+
+      };
+
+      document.getElementById("p2").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+     <a href="#3">তাপগতিবিদ্যা</a>
+     <a href="#3">স্থির তড়িৎ</a>
+     <a href="#3">চলতড়িৎ</a>
+     <a href="#3">ভৌত আলোকবিজ্ঞান</a>
+     <a href="#3">আধুনিক পদার্থবিজ্ঞানের সূচনা</a>
+     <a href="#3">পরমাণুর মডেল এবং নিউক্লিয়ার পদার্থবিজ্ঞান</a>
+     <a href="#3">সেমিকন্ডাক্টর ও ইলেকট্রনিকস</a>
+    </div>
+    `
+
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { step3(event.target.innerHTML); }
+
+      };
+
+      document.getElementById("c1").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+     <a href="#3">ল্যাবরেটরির নিরাপদ ব্যবহার</a>
+     <a href="#3">গুণগত রসায়ন</a>
+     <a href="#3">মৌলের পর্যায়বৃত্ত ধর্ম ও রাসায়নিক বন্ধন</a>
+     <a href="#3">রাসায়নিক পরিবর্তন</a>
+     <a href="#3">কর্মমুখী রসায়ন</a>
+    </div>
+    `
+
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { step3(event.target.innerHTML); }
+
+      };
+
+      document.getElementById("c2").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+     <a href="#3">পরিবেশ রসায়ন</a>
+     <a href="#3">জৈব রসায়ন</a>
+     <a href="#3">পরিমাণগত রসায়ন</a>
+     <a href="#3">তড়িৎ রসায়ন</a>
+     <a href="#3">অর্থনৈতিক রসায়ন</a>
+    </div>
+    `
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { step3(event.target.innerHTML); }
+
+      };
+
+      document.getElementById("b1").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+     <a href="#3">কোষ ও এর গঠন</a>
+     <a href="#3">কোষ বিভাজন</a>
+     <a href="#3">কোষ রসায়ন</a>
+     <a href="#3">অণুজীব</a>
+     <a href="#3">শৈবাল ও ছত্রাক</a>
+     <a href="#3">ব্রায়োফাইটা ও টেরেডোফাইটা</a>
+     <a href="#3">নগ্নবীজী ও আবৃতবীজী উদ্ভিদ</a>
+     <a href="#3">টিস্যু ও টিস্যুতন্ত্র</a>
+     <a href="#3">উদ্ভিদ শারীরতত্ত্ব</a>
+     <a href="#3">উদ্ভিদ প্রজনন</a>
+     <a href="#3">জীবপ্রযুক্তি</a>
+     <a href="#3">জীবের পরিবেশ, বিস্তার ও সংরক্ষণ</a>
+    </div>
+    `
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { step3(event.target.innerHTML); }
+
+      };
+
+      document.getElementById("b2").onclick = function () {
+        document.getElementById('2nd').innerHTML = `
+    <div id="ul">
+     <a href="#3">প্রাণীর বিভিন্নতা ও শ্রেণিবিন্যাস</a>
+     <a href="#3">প্রাণীর পরিচিতি</a>
+     <a href="#3">পরিপাক ও শোষণ</a>
+     <a href="#3">রক্ত সঞ্চালন</a>
+     <a href="#3">শ্বাসক্রিয়া ও শ্বসন</a>
+     <a href="#3">বর্জ্য ও নিষ্কাশন</a>
+     <a href="#3">চলন ও অঙ্গচালনা</a>
+     <a href="#3">সমন্বয় ও নিয়ন্ত্রণ</a>
+     <a href="#3">মানব জীবনের ধারাবাহিকতা</a>
+     <a href="#3">মানবদেহের প্রতিরক্ষা</a>
+     <a href="#3">জীনতত্ত্ব ও বিবর্তন</a>
+     <a href="#3">প্রানির আচরণ</a>
+    </div>
+    `
+        setTimeout(topp, 10);
+        document.getElementById('ul')
+          .onclick = function (event) { step3(event.target.innerHTML); }
+
+      };
+    }
+
+
+    window.startt = async function () {
+      let myObject = await fetch('https://pipbd.cyclic.app/gg');
+      let myText = await myObject.text();
+      console.log(myText);
+    }; startt()
+
+  </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" href="./favicon.ico?" type="image/x-icon">
+  <title>Webapp</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+  <style>
+    /* bengali */
+    @font-face {
+      font-family: 'Noto Sans Bengali';
+      font-style: normal;
+      font-weight: 100;
+      font-stretch: 100%;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/notosansbengali/v20/Cn-SJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mcSPVFpVEqE-6KmsolKicWu8w7LwlYc8g.woff2) format('woff2');
+      unicode-range: U+0964-0965, U+0980-09FE, U+1CF7, U+1CFA, U+200C-200D, U+20B9, U+25CC;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Noto Sans Bengali';
+      font-style: normal;
+      font-weight: 100;
+      font-stretch: 100%;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/notosansbengali/v20/Cn-SJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mcSPVFpVEqE-6KmsolKidmu8w7LwlYc8g.woff2) format('woff2');
+      unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Noto Sans Bengali';
+      font-style: normal;
+      font-weight: 100;
+      font-stretch: 100%;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/notosansbengali/v20/Cn-SJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mcSPVFpVEqE-6KmsolKideu8w7LwlY.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <style>
+    body,
+    html {
+      height: 100%;
+      user-select: none;
+      background-size: cover;
+      margin-top: 10vh;
+      background-image: url("https://firebasestorage.googleapis.com/v0/b/india-f7d05.appspot.com/o/chat%2Fbg30.jpg?alt=media&token=6f735aa1-c8fd-41e7-b17f-c5ed05278734");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: 'Noto Sans Bengali', sans-serif;
+      margin: 0px;
+      padding: 0px;
+
+    }
+
+    a,
+    h4 {
+      text-decoration: none !important;
+      display: block;
+      color: rgb(0, 0, 0);
+      background: rgba(255, 255, 255, 0.7);
+      filter: blur(.00001px);
+      border-radius: 2px;
+      font-size: 26px;
+      font-weight: 100;
+      padding: 20px;
+      padding-left: 0;
+      padding-right: 0;
+      margin: 0px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    #ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+    }
+    sub{
+      color: white;
+      background-color:#dc3545;
+      display: table;
+      margin: 0 auto;
+      font-size: x-small;
+
+    }
+  </style>
+  <style>
+    .loader {
+      border: 5px solid rgba(217, 219, 218, 0.5);
+      border-radius: 50%;
+      border-top: 5px solid #3498db;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+      z-index: 1;
+      margin: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    #vid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1
+    }
+
+    #back{
+      position: fixed;
+      font-size: medium;
+      width: 20vw;
+      height: 8vw;
+      margin-top: 17vh;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: wheat;
+      padding: 8px;
+      top: 0;
+      right: 0;
+      z-index: 1
+    }
+
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      /* Optional: removes iframe border */
+      overflow-y: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 1px;
+    }
+
+    #popup span{
+    margin-bottom: 20px;
+    display: block;
+}
+#popup{
+    display: none;
+    position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+     
+}
+#popup a{
+    text-decoration: none !important;
+    padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: auto !important;
+      
+}
+#popup a:first-of-type{
+    margin-right: 10px;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="2nd"></div>
+  <div id="3rd"></div>
+  <div id="4th"></div>
+  <div id="popup"></div>
+  <div id="1st">
+    <a href="#2" id="p1">Physics 1st paper </a>
+    <a href="#2" id="p2">Physics 2nd paper </a>
+    <a href="#2" id="c1">Chemistry 1st paper </a>
+    <a href="#2" id="c2">Chemistry 2nd paper </a>
+    <a href="#2" id="b1">Biology 1st paper </a>
+    <a href="#2" id="b2">Biology 2nd paper </a>
+    <a href="#2" id="m1">Math 1st paper </a>
+    <a href="#2" id="m2">Math 2nd paper </a>
+  </div>
+
+
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import {
+      getDatabase, ref, onValue, remove, onChildChanged, update, get, child, set
+    } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
+    const config = {
+      apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
+      authDomain: "test2-5bbd8.firebaseapp.com",
+      databaseURL: "https://test2-5bbd8-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "test2-5bbd8",
+      storageBucket: "test2-5bbd8.appspot.com",
+      messagingSenderId: "683307239625",
+      appId: "1:683307239625:web:d28ed1c2fb6b31dd4e6518"
+    };
+
+
+    const app = initializeApp(config);
+    const database = getDatabase(app);
+
+    var glo
+
+
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `multi/webapp/vpdf`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        //console.log(snapshot.val());
+        glo = snapshot.val()
+        console.log(glo)
+        load(glo)
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
+    const d3b = getDatabase();
+    const starCountRef = ref(d3b, 'multi/webapp/24');
+    onValue(starCountRef, (snapshot) => {
+
+      const data = snapshot.val();
+      //console.log(data)
+      //updateStarCount(postElement, data);
+    });
+
+    window.load = async function (stringg) {
+
+
+
+
+      window.raww = JSON.parse(stringg)
+
+      // alert(Object.keys(string))
+      // console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
+      // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0])
+      // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
+      //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
+
+      function step3(clicked) {
+        document.getElementById('3rd').innerHTML = `<div id='vid'></div><div id='sheet'></div><h1>${clicked}</h1><div  id="3rd"></div>`
+        let loader = document.createElement("div");
+        loader.setAttribute('class', 'loader')
+        loader.setAttribute('id', 'loader')
+        loader.style.cssText = 'display: none'
+        document.body.append(loader)
+        for (let i = 0; i < Object.keys(raww[clicked]).length; i++) {
+          (function (link, ytlink, sheet) {
+            let h4 = document.createElement("a");
+            if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
+            h4.setAttribute('href', '#35')}else{
+            h4.setAttribute('href', '#4')
+            }
+            h4.addEventListener("click", async function () {
+              try {
+
+                if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
+                  document.getElementById("popup").innerHTML=`
+                  <span>Select One</span><a id='prac' href="#4">Practice Sheet</a><a id='sol' href="#4">Solution Sheet</a>`;
+                   document.getElementById("popup").style.cssText = 'display:table';
+                   document.getElementById("prac").addEventListener("click", async function () {
+                    document.getElementById("loader").style.cssText = 'display:block'
+document.getElementById('4th').innerHTML = `
+<iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
+type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
+`
+calculateLoadPercentage()
+                   })
+                }else{
+
+                
+                    document.getElementById("loader").style.cssText = 'display:block'
+
+               
+               
+
+                document.getElementById('4th').innerHTML = `
+               <iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
+ type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
+               `
+               calculateLoadPercentage()
+                }
+
+              } catch (e) {
+                console.log(link);
+                document.getElementById("loader").style.cssText = 'display:none'
+
+                //   window.open(link,"_self")
+              }
+
+
+            })
+            if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
+              h4.innerHTML = `${Object.keys(raww[clicked])[i]} <sub>PRACTICE SHEET Included</sub>`
+            }else{h4.innerHTML = Object.keys(raww[clicked])[i]}
+            document.getElementById('3rd').append(h4)
+          })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])], Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]), raww[clicked][Object.keys(raww[clicked])[i]]["sheet"]);
+
+
+          //console.log(Object.keys(raww[clicked][Object.keys(raww[clicked])[0]]))
+          //console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
+          //  raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])]
+        }
+
+      };
+      // kskskdldkkdkdkdkdkkdkd 
+      /*
+      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
+      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
+      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
+      console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]]))
+      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])
+      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
+      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])])
+      
+     // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
+  
+      console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]["Youtube.com/1"])
+    //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
+  //-----------------------------------------------------------------
+  */
+      function calculateLoadPercentage() {
+        var iframe = document.getElementById('iframe');
+        iframe.addEventListener('load', function () {
+          console.log('Content loaded!');
+          document.getElementById("loader").style.cssText = 'display:none'
+          document.getElementById("back").style.cssText = 'display:block'
+          setTimeout(function () {
+            // Calculate an estimation of content loaded
+            console.log('Estimated load percentage: 100%');
+            // You can update a progress bar or perform other actions based on your estimation
+          }, 1000); // Adjust this delay as necessary
+        });
+      }
+
+      function handleHashChange() {
+        var hash = window.location.hash.substring(1);
+        console.log(hash)
+
+        if (hash === "1" || hash == "") {
+          document.getElementById('1st').style.cssText = `display:block`;
+          document.getElementById('2nd').style.cssText = `display:none`;
+          document.getElementById('3rd').style.cssText = `display:none`
+          document.getElementById('4th').style.cssText = `display:none`
+          document.getElementById('popup').style.cssText = `display:none`
+        } else if (hash === "2") {
+          document.getElementById('1st').style.cssText = `display:none`;
+          document.getElementById('2nd').style.cssText = `display:block`;
+          document.getElementById('3rd').style.cssText = `display:none`
+          document.getElementById('4th').style.cssText = `display:none`
+          document.getElementById('popup').style.cssText = `display:none`
+        } else if (hash === "3") {
+          document.getElementById('1st').style.cssText = `display:none`;
+          document.getElementById('2nd').style.cssText = `display:none`;
+          document.getElementById('3rd').style.cssText = `display:block`
+          document.getElementById('4th').style.cssText = `display:none`
+          document.getElementById('popup').style.cssText = `display:none`
+        }
+        else if (hash === "35" ) {
+          document.getElementById('1st').style.cssText = `display:none`;
+          document.getElementById('2nd').style.cssText = `display:none`;
+          document.getElementById('3rd').style.cssText = `display:none`
+          document.getElementById('4th').style.cssText = `display:block`
+        }else if (hash === "4" ) {
+          document.getElementById('1st').style.cssText = `display:none`;
+          document.getElementById('2nd').style.cssText = `display:none`;
+          document.getElementById('3rd').style.cssText = `display:none`
+          document.getElementById('4th').style.cssText = `display:none`
         }
       }
       window.onhashchange = handleHashChange;
