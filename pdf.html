@@ -86,6 +86,14 @@
       margin: 0px;
       padding: 0px;
     }
+    sub{
+      color: white;
+      background-color:#dc3545;
+      display: table;
+      margin: 0 auto;
+      font-size: x-small;
+
+    }
   </style>
   <style>
     .loader {
@@ -265,7 +273,9 @@
 
 
             })
-            h4.innerText = Object.keys(raww[clicked])[i]
+            if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
+              h4.innerHTML = `${Object.keys(raww[clicked])[i]} <sub>PRACTICE SHEET Included</sub>`
+            }else{h4.innerHTML = Object.keys(raww[clicked])[i]}
             document.getElementById('3rd').append(h4)
           })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])], Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]), raww[clicked][Object.keys(raww[clicked])[i]]["sheet"]);
 
