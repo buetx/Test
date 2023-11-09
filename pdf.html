@@ -86,9 +86,10 @@
       margin: 0px;
       padding: 0px;
     }
-    sub{
+
+    sub {
       color: white;
-      background-color:#dc3545;
+      background-color: #dc3545;
       display: table;
       margin: 0 auto;
       font-size: x-small;
@@ -129,7 +130,7 @@
       z-index: 1
     }
 
-    #back{
+    #back {
       position: fixed;
       font-size: medium;
       width: 20vw;
@@ -162,13 +163,14 @@
       width: 1px;
     }
 
-    #popup span{
-    margin-bottom: 20px;
-    display: block;
-}
-#popup{
-    display: none;
-    position: fixed;
+    #popup span {
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -178,11 +180,12 @@
       text-align: center;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-     
-}
-#popup a{
-    text-decoration: none !important;
-    padding: 10px 20px;
+
+    }
+
+    #popup a {
+      text-decoration: none !important;
+      padding: 10px 20px;
       font-size: 16px;
       border: none;
       border-radius: 5px;
@@ -191,11 +194,12 @@
       cursor: pointer;
       transition: background-color 0.3s;
       width: auto !important;
-      
-}
-#popup a:first-of-type{
-    margin-right: 10px;
-}
+
+    }
+
+    #popup a:first-of-type {
+      margin-right: 10px;
+    }
   </style>
 </head>
 
@@ -203,6 +207,7 @@
 
   <div id="2nd"></div>
   <div id="3rd"></div>
+  <div id="35"></div>
   <div id="4th"></div>
   <div id="popup"></div>
   <div id="1st">
@@ -284,41 +289,51 @@
         loader.style.cssText = 'display: none'
         document.body.append(loader)
         for (let i = 0; i < Object.keys(raww[clicked]).length; i++) {
-          (function (link, ytlink, sheet) {
+          (function ( sheet,prac,sol) {
             let h4 = document.createElement("a");
-            if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
-            h4.setAttribute('href', '#35')}else{
-            h4.setAttribute('href', '#4')
+            if (raww[clicked][Object.keys(raww[clicked])[i]]["prac"] != '') {
+              h4.setAttribute('href', '#35')
+            } else {
+              h4.setAttribute('href', '#4')
             }
             h4.addEventListener("click", async function () {
               try {
 
-               if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
-//                   document.getElementById("popup").innerHTML=`
-//                   <span>Select One</span><a id='prac' href="#4">Practice Sheet</a><a id='sol' href="#4">Solution Sheet</a>`;
-//                    document.getElementById("popup").style.cssText = 'display:table';
-//                    document.getElementById("prac").addEventListener("click", async function () {
-//                     document.getElementById("loader").style.cssText = 'display:block'
-// document.getElementById('4th').innerHTML = `
-// <iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
-// type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
-// `
-// calculateLoadPercentage()
-//                    })
-                }
-                else{
-
-                
+                if (raww[clicked][Object.keys(raww[clicked])[i]]["prac"] != '') {
+                  document.getElementById("popup").innerHTML = `
+                  <span>Select One</span><a id='prac' href="#4">Practice Sheet</a><a id='sol' href="#4">Solution Sheet</a>`;
+                  document.getElementById("popup").style.cssText = 'display:table';
+                  document.getElementById("prac").addEventListener("click", async function () {
                     document.getElementById("loader").style.cssText = 'display:block'
+                    document.getElementById('4th').innerHTML = `
+<iframe id="iframe" src="${prac}" width="100%" height="100vh" 
+type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
+`
+                    calculateLoadPercentage()
+                  })
 
-               
-               
-console.log(sheet)
-                document.getElementById('4th').innerHTML = `
+                  document.getElementById("sol").addEventListener("click", async function () {
+                    document.getElementById("loader").style.cssText = 'display:block'
+                    document.getElementById('4th').innerHTML = `
+<iframe id="iframe" src="${sol}" width="100%" height="100vh" 
+type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
+`
+                    calculateLoadPercentage()
+                  })
+                }
+                else {
+
+
+                  document.getElementById("loader").style.cssText = 'display:block'
+
+
+
+                  console.log(sheet)
+                  document.getElementById('4th').innerHTML = `
                <iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
  type="application/pdf"></iframe> <a style="display:none" id="back" href="#3">Return</a>
                `
-               calculateLoadPercentage()
+                  calculateLoadPercentage()
                 }
 
               } catch (e) {
@@ -330,11 +345,13 @@ console.log(sheet)
 
 
             })
-            if(raww[clicked][Object.keys(raww[clicked])[i]]["prac"] !=''){
+            if (raww[clicked][Object.keys(raww[clicked])[i]]["prac"] != '') {
               h4.innerHTML = `${Object.keys(raww[clicked])[i]} <sub>PRACTICE SHEET Included</sub>`
-            }else{h4.innerHTML = Object.keys(raww[clicked])[i]}
+            } else { h4.innerHTML = Object.keys(raww[clicked])[i] }
             document.getElementById('3rd').append(h4)
-          })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])], Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]), raww[clicked][Object.keys(raww[clicked])[i]]["sheet"]);
+          })(raww[clicked][Object.keys(raww[clicked])[i]]["sheet"],raww[clicked][Object.keys(raww[clicked])[i]]["prac"],raww[clicked][Object.keys(raww[clicked])[i]]["sol"]);
+
+
 
 
           //console.log(Object.keys(raww[clicked][Object.keys(raww[clicked])[0]]))
@@ -396,16 +413,18 @@ console.log(sheet)
           document.getElementById('4th').style.cssText = `display:none`
           document.getElementById('popup').style.cssText = `display:none`
         }
-        else if (hash === "35" ) {
-          document.getElementById('1st').style.cssText = `display:none`;
-          document.getElementById('2nd').style.cssText = `display:none`;
-          document.getElementById('3rd').style.cssText = `display:none`
-          document.getElementById('4th').style.cssText = `display:block`
-        }else if (hash === "4" ) {
+        else if (hash === "35") {
           document.getElementById('1st').style.cssText = `display:none`;
           document.getElementById('2nd').style.cssText = `display:none`;
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:none`
+          document.getElementById('popup').style.cssText = `display:block`
+        } else if (hash === "4") {
+          document.getElementById('1st').style.cssText = `display:none`;
+          document.getElementById('2nd').style.cssText = `display:none`;
+          document.getElementById('3rd').style.cssText = `display:none`
+          document.getElementById('4th').style.cssText = `display:block`
+          document.getElementById('popup').style.cssText = `display:none`
         }
       }
       window.onhashchange = handleHashChange;
