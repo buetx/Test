@@ -208,6 +208,7 @@
       border-radius: 5px;
       background-color: rgba(39,174,96,.7);
       color: white;
+      font-weight: 600;
       cursor: pointer;
       transition: background-color 0.3s;
       width: auto !important;
@@ -216,6 +217,14 @@
 
     #popup a:first-of-type {
       margin-right: 10px;
+    }
+    .hide{
+      width: 44px;
+      height: 44px;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #dc3545;
     }
   </style>
 </head>
@@ -358,6 +367,7 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
           document.getElementById("loader").style.cssText = 'display:none'
           document.getElementById("back").style.cssText = 'display:block'
           document.getElementById("down").style.cssText = 'display:block'
+          let loader = document.createElement("div");loader.setAttribute('class', 'hide');document.getElementById('4th').append(loader)
         });
       }
 
