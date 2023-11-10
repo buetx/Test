@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="firebase" src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <input id="f" onchange="gotfile(event)" type="file" />
+    <h2 id="per"></h2>
+
+    <script>
+            var messages = document.getElementById('messages');
+    var form = document.getElementById('form');
+    const firebaseConfig = {
+    apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
+    authDomain: "test2-5bbd8.firebaseapp.com",
+    databaseURL: "https://test2-5bbd8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "test2-5bbd8",
+    storageBucket: "test2-5bbd8.appspot.com",
+    messagingSenderId: "683307239625",
+    appId: "1:683307239625:web:d28ed1c2fb6b31dd4e6518"
+  };
+  setTimeout(() => { firebase.initializeApp(firebaseConfig); }, 2000);
+
+
+    var fileitem, filename, percent
+
+    function gotfile(e) {
+      fileitem = e.target.files[0]
+      filename = fileitem.name
+      var firestr
+      var dbsendtype
+
+
+      firestr = firebase.storage().ref("lec_sheets/" + filename)
+      var metadata = {
+    contentDisposition: 'attachment'// Force download
+  };
+      var uploadtusk = firestr.put(fileitem,metadata)
+
+
+
+      uploadtusk.on("state_changed", (snapshot) => {
+        // console.log(snapshot)
+        const percent = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        console.log(percent)
+        document.getElementById('per').innerHTML=percent+'%'
+
+
+      }, (err) => {
+        console.log(err)
+
+      }, () => {
+        uploadtusk.snapshot.ref.getDownloadURL().then((url) => {
+          console.log(url)
+          document.getElementById('per').innerHTML=url
+
+          if (fileitem.size / 1024 < 10) {
+            console.log('filesize too low')
+           
+          }
+          else {
+
+          }
+
+        }).catch((err) => {
+          console.log(err)
+        })
+      })
+
+    }
+
+    </script>
+</body>
+</html>
