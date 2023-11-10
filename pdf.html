@@ -397,18 +397,21 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:none`
           document.getElementById('popup').style.cssText = `display:none`
+          document.getElementById('span').style.cssText = `display:block`
         } else if (hash === "2") {
           document.getElementById('1st').style.cssText = `display:none`;
           document.getElementById('2nd').style.cssText = `display:block`;
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:none`
           document.getElementById('popup').style.cssText = `display:none`
+          document.getElementById('span').style.cssText = `display:none`
         } else if (hash === "3") {
           document.getElementById('1st').style.cssText = `display:none`;
           document.getElementById('2nd').style.cssText = `display:none`;
           document.getElementById('3rd').style.cssText = `display:block`
           document.getElementById('4th').style.cssText = `display:none`
           document.getElementById('popup').style.cssText = `display:none`
+          document.getElementById('span').style.cssText = `display:none`
         }
         else if (hash === "35") {
           document.getElementById('1st').style.cssText = `display:none`;
@@ -416,12 +419,14 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:none`
           document.getElementById('popup').style.cssText = `display:block`
+          document.getElementById('span').style.cssText = `display:none`
         } else if (hash === "4") {
           document.getElementById('1st').style.cssText = `display:none`;
           document.getElementById('2nd').style.cssText = `display:none`;
           document.getElementById('3rd').style.cssText = `display:none`
           document.getElementById('4th').style.cssText = `display:block`
           document.getElementById('popup').style.cssText = `display:none`
+          document.getElementById('span').style.cssText = `display:none`
         }
       }
       window.onhashchange = handleHashChange;
