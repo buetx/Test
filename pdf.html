@@ -275,7 +275,7 @@
         let loader = document.createElement("div");loader.setAttribute('class', 'loader');loader.setAttribute('id', 'loader');loader.style.cssText = 'display: none';document.body.append(loader)
 
         for (let i = 0; i < Object.keys(raww[clicked]).length; i++) {
-          (function (sheet, prac, sol) {
+          (function (sheet, prac, sol,dsheet,dprac,dsol) {
             let h4 = document.createElement("a");
             if (raww[clicked][Object.keys(raww[clicked])[i]]["prac"] != '') {
               h4.setAttribute('href', '#35')
@@ -291,24 +291,24 @@
                   document.getElementById("popup").style.cssText = 'display:table';
                   document.getElementById("prac").addEventListener("click", async function () {
                     document.getElementById("loader").style.cssText = 'display:block'
-                    const regex = /d\/(.*?)\/preview/;
-                  const match = prac.match(regex);
+                  //   const regex = /d\/(.*?)\/preview/;
+                  // const match = prac.match(regex);
                     document.getElementById('4th').innerHTML = `
 <iframe id="iframe" src="${prac}" width="100%" height="100vh" 
 type="application/pdf"></iframe> <a style="display:none" id="down" target="_self"
- href="https://drive.google.com/u/0/uc?id=${match[1]}&export=download">Download</a><a style="display:none" id="back" href="#3">Return</a>
+ href="${dprac}>Download</a><a style="display:none" id="back" href="#3">Return</a>
 `
                     calculateLoadPercentage()
                   })
 
                   document.getElementById("sol").addEventListener("click", async function () {
                     document.getElementById("loader").style.cssText = 'display:block'
-                    const regex = /d\/(.*?)\/preview/;
-                  const match = sol.match(regex);
+                  //   const regex = /d\/(.*?)\/preview/;
+                  // const match = sol.match(regex);
                     document.getElementById('4th').innerHTML = `
 <iframe id="iframe" src="${sol}" width="100%" height="100vh" 
 type="application/pdf"></iframe>  <a style="display:none" id="down" target="_self"
- href="https://drive.google.com/u/0/uc?id=${match[1]}&export=download">Download</a><a style="display:none" id="back" href="#3">Return</a>
+ href="${dsol}">Download</a><a style="display:none" id="back" href="#3">Return</a>
 `
                     calculateLoadPercentage()
                   })
@@ -318,12 +318,12 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
 
                   document.getElementById("loader").style.cssText = 'display:block'
 
-                  const regex = /d\/(.*?)\/preview/;
-                  const match = sheet.match(regex);
+                  // const regex = /d\/(.*?)\/preview/;
+                  // const match = sheet.match(regex);
                   document.getElementById('4th').innerHTML = `
                <iframe id="iframe" src="${sheet}" width="100%" height="100vh" 
  type="application/pdf"></iframe> <a style="display:none" id="down" target="_self"
- href="https://drive.google.com/u/0/uc?id=${match[1]}&export=download"   >Download</a><a style="display:none" id="back" href="#3">Return</a>
+ href="${dsheet}"   >Download</a><a style="display:none" id="back" href="#3">Return</a>
                `
                   calculateLoadPercentage()
                 }
@@ -341,7 +341,10 @@ type="application/pdf"></iframe>  <a style="display:none" id="down" target="_sel
               h4.innerHTML = `${Object.keys(raww[clicked])[i]} <sub>PRACTICE SHEET Included</sub>`
             } else { h4.innerHTML = Object.keys(raww[clicked])[i] }
             document.getElementById('3rd').append(h4)
-          })(raww[clicked][Object.keys(raww[clicked])[i]]["sheet"], raww[clicked][Object.keys(raww[clicked])[i]]["prac"], raww[clicked][Object.keys(raww[clicked])[i]]["sol"]);
+          })(raww[clicked][Object.keys(raww[clicked])[i]]["sheet"], raww[clicked][Object.keys(raww[clicked])[i]]["prac"], raww[clicked][Object.keys(raww[clicked])[i]]["sol"], raww[clicked][Object.keys(raww[clicked])[i]]["dsheet"], raww[clicked][Object.keys(raww[clicked])[i]]["dprac"], raww[clicked][Object.keys(raww[clicked])[i]]["dsol"]);
+
+
+          console.log( raww[clicked][Object.keys(raww[clicked])[i]]["dsol"])
 
         }
 
