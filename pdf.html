@@ -226,10 +226,22 @@
       right: 10px;
       background-color: rgba(0, 0, 0,.1);
     }
+    #span{
+        color: black;
+        font-size:large;
+        display: table;
+margin-top: 8vh;
+        margin-left: 8vh;
+        
+        background-color: rgba(255, 255, 255, 0.6);
+    }
   </style>
 </head>
 
 <body>
+
+
+    <span id="span" onclick="upload()">Return</span>
 
   <div id="2nd"></div>
   <div id="3rd"></div>
@@ -274,6 +286,10 @@
       } else {console.log("No data available");}
     }).catch((error) => { console.error(error); });
 
+    window.upload=function (){
+      window.open('https://mcubd.github.io/webapp','_self')
+      
+      }
 
     window.load = async function (stringg) {
 
@@ -417,6 +433,7 @@ if(displayValue=='block'){
 }
 
       }, 100);
+     
 
       function topp() { window.scrollTo(0, 0); };
       document.getElementById("m1").onclick = function () {
