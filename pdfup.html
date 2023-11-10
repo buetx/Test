@@ -16,9 +16,9 @@
 </head>
 <body>
     
-    <input style="display:none" id="f" onchange="gotfile(event)" type="file" />
+    <input style="display:none" id="f" onchange="gotfile(event)" type="file" multiple/>
 
-    <input  style="display:none"  id="f2" onchange="gotfile2(event)" type="file" />
+    <input  style="display:none"  id="f2" onchange="gotfile2(event)" type="file" multiple/>
 
     <div onclick="document.getElementById('f').click()" id="t4" style="width: 80px;position: absolute;top: 50%;left: 40%;" > <span>24</span><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
         viewBox="0 0 50 50" xml:space="preserve">
@@ -54,6 +54,8 @@
 
 
     var fileitem, filename, percent
+
+
 
     function gotfile(e) {
       fileitem = e.target.files[0]
@@ -100,47 +102,44 @@
 
     }
     function gotfile2(e) {
-      fileitem = e.target.files[0]
-      filename = fileitem.name
-      var firestr
-      var dbsendtype
+     
+     
 
 
-      firestr = firebase.storage().ref("acs/" + filename)
-      var metadata = {
-    contentDisposition: 'attachment'// Force download
-  };
-      var uploadtusk = firestr.put(fileitem,metadata)
+      function uploadFiles() {
+  for (var i = 0; i < e.target.files.length; i++) {
+    uploadfile(e.target.files[i],);
+  }
+};uploadFiles()
+  
+
+function uploadfile(file){
+
+
+
+
+     let firestr = firebase.storage().ref("acs/" + file.name)
+      var metadata = {contentDisposition: 'attachment'};
+      var uploadtusk = firestr.put(file,metadata)
 
 
 
       uploadtusk.on("state_changed", (snapshot) => {
-        // console.log(snapshot)
         const percent = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
         console.log(percent)
-        document.getElementById('per').innerHTML=percent+'%'
-
-
+        document.getElementById('per').innerHTML='Uploading'+file.name+'---------'+percent+'%'
       }, (err) => {
         console.log(err)
-
       }, () => {
         uploadtusk.snapshot.ref.getDownloadURL().then((url) => {
           console.log(url)
           document.getElementById('per').innerHTML=url
-
-          if (fileitem.size / 1024 < 10) {
-            console.log('filesize too low')
-           
-          }
-          else {
-
-          }
-
         }).catch((err) => {
           console.log(err)
         })
       })
+
+    }
 
     }
 
