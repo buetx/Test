@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -221,7 +222,7 @@ window.load=async function (stringg){
     loader.style.cssText = 'display: none'
    document.body.append(loader)
    for (let i = 0; i < Object.keys(raww[clicked]).length ; i++) {
-    (function (link,ytlink,sheet){
+    (function (link,ytlink,sheet,dlink){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click",async function() {
@@ -257,6 +258,19 @@ window.load=async function (stringg){
      }catch(e){
                console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
+               document.getElementById('sheet').innerHTML=`
+               <a href="#4">Practice Sheet</a>
+               `
+               document.getElementById('4th').innerHTML=`
+               <iframe src="${sheet}" width="100%" height="100vh" 
+ type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
+               `
+               document.getElementById('vid').innerHTML=`
+               <video width="95%" height="auto" controls>
+  <source src=${link} type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+`
                
             //   window.open(link,"_self")
      }
@@ -268,9 +282,12 @@ window.load=async function (stringg){
       })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])],Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]),raww[clicked][Object.keys(raww[clicked])[i]]["sheet"]);
 
      
-      //console.log(Object.keys(raww[clicked][Object.keys(raww[clicked])[0]]))
+    //   console.log(Object.keys(raww[clicked][Object.keys(raww[clicked])[0]]))
        //console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
-        //  raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])]
+
+  
+    //  raww["ম্যাট্রিক্স ও-- নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])]
+
     }
 
 };
