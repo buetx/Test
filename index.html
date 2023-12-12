@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,13 +107,19 @@ span{
         margin-top:45vh;
         text-align:center
         }
+        #clicked{
+          color: rgba(255, 255, 255, 0.3);
+        }
+        #vid{
+          display: none;
+        }
 
 </style>
 </head>
 <body> 
 
 
-<span onclick="upload()" >PDF</span>
+
 
     
 
@@ -129,79 +136,159 @@ span{
 
     
  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import {
-      getDatabase, ref, onValue, remove, onChildChanged, update,get,child,set
-    } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
-  const config = {
-    apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
-    authDomain: "test2-5bbd8.firebaseapp.com",
-    databaseURL: "https://test2-5bbd8-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "test2-5bbd8",
-    storageBucket: "test2-5bbd8.appspot.com",
-    messagingSenderId: "683307239625",
-    appId: "1:683307239625:web:d28ed1c2fb6b31dd4e6518"
-  };
 
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+  import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
+  import { getFirestore, collection, addDoc ,query, orderBy, limit,getDocs , doc, setDoc ,Timestamp,serverTimestamp ,getDoc  } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
   
-  const app = initializeApp(config);
-const database = getDatabase(app);
+  
 
-var glo
+      const firebaseConfig = {
+        apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
+        authDomain: "test2-5bbd8.firebaseapp.com",
+        databaseURL: "https://test2-5bbd8-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "test2-5bbd8",
+        storageBucket: "test2-5bbd8.appspot.com",
+        messagingSenderId: "683307239625",
+        appId: "1:683307239625:web:d28ed1c2fb6b31dd4e6518"
+      };
+  
+  
 
-        
-     const dbRef = ref(getDatabase());
-   get(child(dbRef, `multi/webapp/data`)).then((snapshot) => {
-  if (snapshot.exists()) {
-  //console.log(snapshot.val());
-      glo=snapshot.val()
-      console.log(glo)
-      load(glo)
-  } else {
-console.log("No data available");
- }}).catch((error) => {
- console.error(error);
-});
 
-     const d3b = getDatabase();
-const starCountRef = ref(d3b, 'multi/webapp/data');
-onValue(starCountRef, (snapshot) => {
+
+document.addEventListener('DOMContentLoaded',async function() {
+    const app = initializeApp(firebaseConfig);
+  const firestore = getFirestore(app);
+  const chat =collection(firestore,'varsity23_archive')
+
+
+  const documentRef = doc(firestore, 'varsity23_archive','FddUlP4k6iMVXGKu3QRt');
+            
+            const docSnapshot = await getDoc(documentRef);
+                console.log(docSnapshot.data())
+                load(docSnapshot.data())
+
+})
+window.fetchData=async function (url) {
+  try{
     
-  const data = snapshot.val();
-    //console.log(data)
-  //updateStarCount(postElement, data);
-});
+  const response = await fetch(url);
+  const data = await response.text();
+  return data;
+  }catch(e){
+    return 'hh'
+  }
+}
 
-window.load=async function (stringg){
-       
 
-        
-  
-    window.raww=JSON.parse(stringg)
 
-   // alert(Object.keys(string))
-    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
-    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0])
-  console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
-                   //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
 
-    function step3(clicked) {
-    document.body.innerHTML=`<h1>${clicked}</h1><div  id="3rd"></div>`
+window.step3=function (clicked,rawww) {
+    document.body.innerHTML=`<h1 id='clicked'>${clicked}</h1><div  id="3rd"></div><div id="vid"></div>`
      let loader = document.createElement("div");
     loader.setAttribute('class', 'loader')
     loader.setAttribute('id', 'loader')
     loader.style.cssText = 'display: none'
    document.body.append(loader)
-   for (let i = 0; i < Object.keys(raww[clicked]).length ; i++) {
-    (function (link,ytlink){
+
+   console.log(rawww)
+   let arrold=rawww[clicked]
+   console.log(arrold)
+
+ 
+   const sortedKeys = Object.keys(arrold).sort();
+   const raww = {};
+sortedKeys.forEach(key => {
+  raww[key] = arrold[key];
+});
+
+
+console.log(Object.keys(raww)[0])
+console.log(raww[Object.keys(raww)[0]])
+
+   for (let i = 0; i < Object.keys(raww).length ; i++) {
+    (function (ytlink){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
        h4.addEventListener("click",async function() {
            try{
              document.getElementById("loader").style.cssText = 'display:block'
-           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+
+             const promises = [];
+             const urls=['https://pipbd.cyclic.app/yt?yt='+ytlink,'https://pipbd.cyclic.app/yt?yt='+ytlink,'https://pipbd.cyclic.app/yt?yt='+ytlink]
+
+             for (const url of urls) {
+    promises.push(fetchData(url));
+  }
+  let aa=setTimeout(async () => {
+    console.log('timeout')
+    const element = document.getElementById('dwn');
+
+// Check if the element exists
+if (!element) {
+  let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
         let myText = await myObjectt.text();
            let status=await myObjectt.status;
+      
+           if(status==200){
+            document.getElementById("loader").style.cssText = 'display:none'
+               console.log(status);
+               console.log(myText)
+             let win =   window.open(myText,"_self");
+               setTimeout(function() {
+               document.body.innerHTML=`<p id='dwn'>Download Started!</p>` }, 1500);
+           }
+}
+  }, 14000);
+
+ 
+    const results = await Promise.all(promises);
+
+    // Do something with the results
+    console.log(results);
+    results.forEach(link => {
+      console.log(link)
+      let div=document.getElementById('vid')
+      div.insertAdjacentHTML('beforeend', `<video src="${link}" muted autoplay></video>`);
+
+            
+    });
+    let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        let myText = await myObjectt.text();
+           let status=await myObjectt.status;
+      
+           if(status==200){
+            document.getElementById("loader").style.cssText = 'display:none'
+               console.log(status);
+               console.log(myText)
+             let win =   window.open(myText,"_self");
+               setTimeout(function() {
+               document.body.innerHTML=`<p id='dwn'>Download Started!</p>` }, 1500);
+           }
+
+
+
+
+
+  return 33
+
+
+
+
+
+
+
+
+
+
+
+            
+        //    let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+        // let myText = await myObjectt.text();
+        //    let status=await myObjectt.status;
       
            if(status==200){
              document.getElementById("loader").style.cssText = 'display:none'
@@ -219,38 +306,44 @@ window.load=async function (stringg){
        
            }
      }catch(e){
-               console.log(link);
+
                document.getElementById("loader").style.cssText = 'display:none'
+               console.log(e)
                
-               let win =   window.open(link,"_self");
-             setTimeout(function() {  document.body.innerHTML=`<p id='dwn'>Download Started!</p>`}, 1500);
+
+             setTimeout(function() {  document.body.innerHTML=`<p id='dwn'>Error,Reload and download again</p>`}, 1500);
                //let timer = setInterval(function() {   if(win.onclose) {  clearInterval(timer); location.reload(true); }  }, 100); 
        
      }
            
        
        })
-        h4.innerText = Object.keys(raww[clicked])[i]
+        h4.innerText = Object.keys(raww)[i]
     document.getElementById('3rd').append(h4)
-      })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])],Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]));
-       //console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
-        //  raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])]
+      })(raww[Object.keys(raww)[i]]);
+
     }
 
 };
 // kskskdldkkdkdkdkdkkdkd 
-    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]))
-    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
-    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0])
-    console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]]))
-    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])
-    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[0]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
-    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])[1]])])
-    
-   // console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"][0][Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])])
 
-    console.log(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]["Youtube.com/1"])
-  //  console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"])[Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"])])
+
+
+window.load=async function (raw){
+    let raww={}
+    console.log( Object.keys(raw).length)
+    for (const item in raw) {
+        console.log(item)
+        console.log(raw[item])
+        raww={...raww,...raw[item]}       
+    }
+
+        console.log(raww)
+
+
+       
+
+        
 //-----------------------------------------------------------------
 
     window.upload=function () { 
@@ -272,14 +365,14 @@ document.getElementById("m1").onclick=function ()
     
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 
 };
 
 document.getElementById("m2").onclick=function ()
 {
   document.body.innerHTML=`
-    <ul id="ul">
+    <ul id="ul">
     <li >জটিল সংখ্যা</li>
     <li >বহুপদী সমীকরণ</li>
     <li >কণিক</li>
@@ -289,15 +382,15 @@ document.getElementById("m2").onclick=function ()
     </ul>`
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 };
 
 document.getElementById("p1").onclick=function ()
-{
+{console.log(88)
   document.body.innerHTML=`
     <ul id="ul">
     <li >ভেক্টর</li>
-    <li >নিউটনিয়ান বলবিদ্যা</li>
+    <li >নিউটনীয় বলবিদ্যা</li>
     <li >কাজ, শক্তি ও ক্ষমতা</li>
     <li >মহাকর্ষ ও অভিকর্ষ</li>
     <li >পদার্থের গাঠনিক ধর্ম</li>
@@ -308,7 +401,7 @@ document.getElementById("p1").onclick=function ()
 
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 
 };
 
@@ -328,7 +421,7 @@ document.getElementById("p2").onclick=function ()
    
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 
 };
 
@@ -346,7 +439,7 @@ document.getElementById("c1").onclick=function ()
    
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 
 };
 
@@ -363,7 +456,7 @@ document.getElementById("c2").onclick=function ()
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 
 };
 
@@ -387,7 +480,7 @@ document.getElementById("b1").onclick=function ()
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 
 };
 
@@ -411,7 +504,7 @@ document.getElementById("b2").onclick=function ()
     `
     setTimeout(topp, 10);
     document.getElementById('ul')
-    .onclick = function(event) {step3(event.target.innerHTML);}
+    .onclick = function(event) {step3(event.target.innerHTML,raww);}
 
 };
     }
@@ -427,8 +520,3 @@ document.getElementById("b2").onclick=function ()
 </body>
 
     </html>
-
-
-
-
-
