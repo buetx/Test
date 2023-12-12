@@ -247,7 +247,7 @@
                 const element = document.getElementById('dwn');
 
                 // Check if the element exists
-                if (!element) {
+                if (element.innerHTML!='Download Started!') {
                   let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt=' + ytlink);
                   let myText = await myObjectt.text();
                   let status = await myObjectt.status;
@@ -260,6 +260,7 @@
                     setTimeout(function () {
                       document.body.innerHTML = `<p id='dwn'>Download Started!</p>`
                     }, 1500);
+                  }else{document.body.innerHTML = `<p id='dwn'>Eror,reload the page and download again</p>`
                   }
                 }
               }, 14000);
