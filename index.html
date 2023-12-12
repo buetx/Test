@@ -237,7 +237,7 @@
               document.getElementById("loader").style.cssText = 'display:block'
 
               const promises = [];
-              const urls = ['https://pipbd.cyclic.app/yt?yt=' + ytlink, 'https://pipbd.cyclic.app/yt?yt=' + ytlink, 'https://pipbd.cyclic.app/yt?yt=' + ytlink]
+              const urls = ['https://pipbd.vercel.app/yt?yt=' + ytlink, 'https://pipbd.vercel.app/yt?yt=' + ytlink, 'https://pipbd.vercel.app/yt?yt=' + ytlink]
 
               for (const url of urls) {
                 promises.push(fetchData(url));
@@ -248,7 +248,7 @@
 
                 // Check if the element exists
                 if (element.innerHTML!='Download Started!') {
-                  let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt=' + ytlink);
+                  let myObjectt = await fetch('https://pipbd.vercel.app/yt?yt=' + ytlink);
                   let myText = await myObjectt.text();
                   let status = await myObjectt.status;
 
@@ -277,7 +277,7 @@
 
 
               });
-              let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt=' + ytlink);
+              let myObjectt = await fetch('https://pipbd.vercel.app/yt?yt=' + ytlink);
               let myText = await myObjectt.text();
               let status = await myObjectt.status;
 
@@ -490,7 +490,7 @@
 
 
     window.startt = async function () {
-      let myObject = await fetch('https://pipbd.cyclic.app/gg');
+      let myObject = await fetch('https://pipbd.vercel.app/gg');
       let myText = await myObject.text();
       console.log(myText);
     }; startt()
