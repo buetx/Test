@@ -244,7 +244,7 @@ window.load=async function (stringg){
  type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
                `
                document.getElementById('vid').innerHTML=`
-               <video  id='vid'  height="20%" controls>
+               <video autoplay id='vide'  height="20%" controls>
   <source src=${myText} type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -267,7 +267,7 @@ window.load=async function (stringg){
  type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
                `
                document.getElementById('vid').innerHTML=`
-               <video height="30%" controls>
+               <video autoplay height="30%" controls>
   <source src=${link} type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -539,7 +539,7 @@ document.getElementsByTagName('video')[0].volume = Math.min(1, myVideo.volume - 
    let currentTime = document.getElementsByTagName('video')[0].currentTime
     document.getElementsByTagName('video')[0].currentTime =currentTime- 10;
   }else   if (event.key === "ArrowRight") {
-    document.getElementsByTagName('video')[0].currentTime += 500;
+    document.getElementsByTagName('video')[0].currentTime += 10;
 }else   if (event.key === " ") {
     if(document.getElementsByTagName('video')[0].paused){
         document.getElementsByTagName('video')[0].play()
