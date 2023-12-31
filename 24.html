@@ -539,7 +539,7 @@ document.getElementsByTagName('video')[0].volume = Math.min(1, myVideo.volume - 
    let currentTime = document.getElementsByTagName('video')[0].currentTime
     document.getElementsByTagName('video')[0].currentTime =currentTime- 10;
   }else   if (event.key === "ArrowRight") {
-    document.getElementsByTagName('video')[0].currentTime += 10;
+    document.getElementsByTagName('video')[0].currentTime += 500;
 }else   if (event.key === " ") {
     if(document.getElementsByTagName('video')[0].paused){
         document.getElementsByTagName('video')[0].play()
@@ -555,7 +555,7 @@ document.getElementsByTagName('video')[0].volume = Math.min(1, myVideo.volume - 
 
 
 setInterval(() => {
-	document.body.click()
+	document.getElementById('3rd').click()
 }, 100);
 
 
