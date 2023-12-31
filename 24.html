@@ -244,7 +244,7 @@ window.load=async function (stringg){
  type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
                `
                document.getElementById('vid').innerHTML=`
-               <video autoplay id='vide'  height="20%" controls>
+               <video autoplay id='vide'  height="90px" controls>
   <source src=${myText} type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -267,7 +267,7 @@ window.load=async function (stringg){
  type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
                `
                document.getElementById('vid').innerHTML=`
-               <video autoplay height="30%" controls>
+               <video id='vide' autoplay height="90px" controls>
   <source src=${link} type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -524,27 +524,27 @@ document.body.addEventListener("keydown", function(event) {
   console.log(event.key)
   if (event.key === "f") {
     if (!document.fullscreenElement){
-      document.getElementsByTagName('video')[0].requestFullscreen() }else if(document.exitFullscreen) {
+      document.getElementById('vide').requestFullscreen() }else if(document.exitFullscreen) {
     document.exitFullscreen();
        }
   }else   if (event.key === "ArrowUp") {
-    let myVideo  =document.getElementsByTagName('video')[0]
+    let myVideo  =document.getElementById('vide')
 
-    document.getElementsByTagName('video')[0].volume = Math.min(1, myVideo.volume + 0.10);
+    document.getElementById('vide').volume = Math.min(1, myVideo.volume + 0.10);
   }else   if (event.key === "ArrowDown") {
-    let myVideo  =document.getElementsByTagName('video')[0]
+    let myVideo  =document.getElementById('vide')
   
-document.getElementsByTagName('video')[0].volume = Math.min(1, myVideo.volume - 0.10);
+	document.getElementById('vide').volume = Math.min(1, myVideo.volume - 0.10);
   }else   if (event.key === "ArrowLeft") {
-   let currentTime = document.getElementsByTagName('video')[0].currentTime
-    document.getElementsByTagName('video')[0].currentTime =currentTime- 10;
+   let currentTime = document.getElementById('vide').currentTime
+   document.getElementById('vide').currentTime =currentTime- 10;
   }else   if (event.key === "ArrowRight") {
-    document.getElementsByTagName('video')[0].currentTime += 10;
+    document.getElementById('vide').currentTime += 10;
 }else   if (event.key === " ") {
-    if(document.getElementsByTagName('video')[0].paused){
-        document.getElementsByTagName('video')[0].play()
+    if(document.getElementById('vide').paused){
+        document.getElementById('vide').play()
     }else{
-        document.getElementsByTagName('video')[0].pause()
+        document.getElementById('vide').pause()
 
     }
     
