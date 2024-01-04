@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +68,7 @@
     display: block;
     color: rgb(0, 0, 0);
       background: rgba(255,255,255,0.7);
-      filter: blur(.00001px);
+      /* filter: blur(.00001px); */
       border-radius: 2px;
       font-size:26px;
       font-weight:100;
@@ -110,7 +112,7 @@ position: fixed;
             z-index:1
     
         }
-        #back,#sheet{
+        #back{
 position: fixed;
 width: 10vw;
 height: 10vw;
@@ -135,7 +137,25 @@ height: 10vw;
         ::-webkit-scrollbar {
   width: 1px;
 }
+#his{
+  position: fixed;
+  height: 280px;
+  width: 180px;
+  top: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0);
+  display: block;
+  overflow: scroll;
+}
+.his-h3{
+  z-index: 777;
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
+  /* filter: blur(.01px); */
+  
+  
 
+}
 
 </style>
     
@@ -145,6 +165,8 @@ height: 10vw;
     <div id="2nd"></div>
     <div id="3rd"></div>
     <div id="4th"></div>
+    <div id="his" onclick="his()"></div>
+
 <div id="1st">
 <a href="#2"  id="p1">Physics 1st paper </a>
 <a href="#2"  id="p2">Physics 2nd paper </a>
@@ -163,6 +185,8 @@ height: 10vw;
 import {
       getDatabase, ref, onValue, remove, onChildChanged, update,get,child,set
     } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
+    import { getFirestore, collection, addDoc, query, orderBy, limit, getDocs, doc, setDoc, Timestamp, serverTimestamp, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
   const config = {
     apiKey: "AIzaSyBzaFL1XOU-_152duOo0baL1DfgVVuSwMI",
     authDomain: "test2-5bbd8.firebaseapp.com",
@@ -176,6 +200,9 @@ import {
   
   const app = initializeApp(config);
 const database = getDatabase(app);
+const firestore = getFirestore(app);
+
+
 
 var glo
 
@@ -216,29 +243,54 @@ window.load=async function (stringg){
                    //  .............. console.log(Object.keys(raww["ম্যাট্রিক্স ও নির্ণায়ক"]["Lecture 1"]))
 
     function step3(clicked) {
-    document.getElementById('3rd').innerHTML=`<div id='vid'></div><div id='sheet'></div><h1>${clicked}</h1><div  id="3rd"></div>`
+      hiss0()
+    document.getElementById('3rd').innerHTML=`<div id='vid'></div><div id='sheet'></div><h1 id='h1'>${clicked}</h1><div  id="3rd"></div>`
      let loader = document.createElement("div");
     loader.setAttribute('class', 'loader')
     loader.setAttribute('id', 'loader')
     loader.style.cssText = 'display: none'
    document.body.append(loader)
    for (let i = 0; i < Object.keys(raww[clicked]).length ; i++) {
-    (function (link,ytlink,sheet,dlink){
+    (function (link,ytlink,lec){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
+    console.log(i)
+
        h4.addEventListener("click",async function() {
            try{
+            console.log(i)
+
+
+
+
+
+
+
+           console.log()
+            //document.getElementById('vid').innerHTML=``
+            var h4Elements = document.getElementsByTagName("h4");
+
+// Iterate through each <h4> element
+for (var i = 0; i < h4Elements.length; i++) {
+    var currentH4 = h4Elements[i];
+    // Do something with the current <h4> element
+    currentH4.style.cssText=`background: rgba(255,255,255,0.7);`
+}
+
+
+
+              h4.style.cssText=`background: rgba(255,255,255,0.3);`
+
+
              document.getElementById("loader").style.cssText = 'display:block'
-           let myObjectt = await fetch('https://pipbd.cyclic.app/yt?yt='+ytlink);
+           let myObjectt = await fetch('https://pipbd.vercel.app/yt?yt='+ytlink);
         let myText = await myObjectt.text();
            let status=await myObjectt.status;
       
            if(status==200){
              document.getElementById("loader").style.cssText = 'display:none'
                console.log(status);
-               document.getElementById('sheet').innerHTML=`
-               <a href="#4">Practice Sheet</a>
-               `
+               document.getElementById('sheet').innerHTML=``
                document.getElementById('4th').innerHTML=`
                <iframe src="${sheet}" width="100%" height="100vh" 
  type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
@@ -255,24 +307,28 @@ window.load=async function (stringg){
              //  console.log(link);
                document.getElementById("loader").style.cssText = 'display:none'
              //  window.open(link,"_self")
+
+
+
+
+             const documentRef = doc(firestore, 'history', String('webapp24'));
+const docSnapshot = await getDoc(documentRef);
+const history = collection(firestore, 'history')
+            const docData = {
+                data: [document.getElementById('h1').innerText+'  '+lec,...docSnapshot.data().data],
+                date: serverTimestamp(),
+
+            };
+            await setDoc(doc(history, String('webapp24')), docData);
+
+
+
+
      }
      }catch(e){
-               console.log(link);
+               console.log(e);
                document.getElementById("loader").style.cssText = 'display:none'
-               document.getElementById('sheet').innerHTML=`
-               <a href="#4">Practice Sheet</a>
-               `
-               document.getElementById('4th').innerHTML=`
-               <iframe src="${sheet}" width="100%" height="100vh" 
- type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
-               `
-               document.getElementById('vid').innerHTML=`
-               <video id='vide' autoplay height="90px" controls>
-  <source src=${link} type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-`
-               
+       
             //   window.open(link,"_self")
      }
            
@@ -280,7 +336,7 @@ window.load=async function (stringg){
        })
         h4.innerText = Object.keys(raww[clicked])[i]
     document.getElementById('3rd').append(h4)
-      })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])],Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]),raww[clicked][Object.keys(raww[clicked])[i]]["sheet"]);
+      })(raww[clicked][Object.keys(raww[clicked])[i]][Object.keys(raww[clicked][Object.keys(raww[clicked])[i]])],Object.keys(raww[clicked][Object.keys(raww[clicked])[i]]),Object.keys(raww[clicked])[i]);
 
      
     //   console.log(Object.keys(raww[clicked][Object.keys(raww[clicked])[0]]))
@@ -540,7 +596,34 @@ document.body.addEventListener("keydown", function(event) {
    document.getElementById('vide').currentTime =currentTime- 10;
   }else   if (event.key === "ArrowRight") {
     document.getElementById('vide').currentTime += 10;
-}else   if (event.key === " ") {
+}
+
+else   if (event.key === "h") {
+    // document.getElementById('vide').currentTime += 10;
+    let his=document.getElementById('his')
+    console.log(his.style.display)
+    if(his.style.display == 'none' ){
+    his.style.cssText=`display:block`
+    console.log('none')
+  }else if(his.style.display == ''){
+    his.style.cssText=`display:block`
+
+  } else if(his.style.display == 'block'){
+    his.style.cssText=`display:none`
+    console.log('88')
+
+
+  }
+  hiss()
+
+}
+// else   if (event.key === "d") {
+//     document.getElementById('vide').currentTime += 10;
+// }else   if (event.key === "ArrowRight") {
+//     document.getElementById('vide').currentTime += 10;
+// }
+
+else   if (event.key === " ") {
     if(document.getElementById('vide').paused){
         document.getElementById('vide').play()
     }else{
@@ -559,6 +642,127 @@ setInterval(() => {
 }, 100);
 
 
+
+window.hiss= async function (){
+  const documentRef = doc(firestore, 'history', String('webapp24'));
+const docSnapshot = await getDoc(documentRef);
+let arr0=docSnapshot.data().data
+let arr=[...new Set(arr0)]
+let his=document.getElementById('his')
+his.innerHTML=``
+
+let cls_arr={}
+let text=``
+
+// his.style.cssText='display:block'
+arr.forEach((element,i) => {
+  // console.log(element)
+ 
+  
+  his.insertAdjacentHTML('beforeend',`<h3 class='his-h3'>${element}</h3><hr>`)
+
+  // his.style.display = (his.style.display === 'none' || his.style.display === 'block') ? 'block' : 'none';
+
+// let tr=document.getElementById('h1').innerText.match(extractedText)
+
+
+});
+
+
+
+}
+
+
+
+
+window.hiss0= async function (){
+  const documentRef = doc(firestore, 'history', String('webapp24'));
+const docSnapshot = await getDoc(documentRef);
+let arr0=docSnapshot.data().data
+let arr=[...new Set(arr0)]
+let his=document.getElementById('his')
+his.innerHTML=``
+
+let cls_arr={}
+let text=``
+
+// his.style.cssText='display:block'
+arr.forEach((element,i) => {
+  // console.log(element)
+  let el=element
+  const result = element.match(/^(.*?)(?=l)/i);
+const extractedText = result ? result[1] : '';
+
+
+const result1 = element.match(/([lL].*)$/i);
+
+// Extracting the matched text
+const extractedText1 = result1 ? result1[1] : '';
+// console.log(extractedText);
+// console.log(extractedText1)
+
+
+
+  
+  his.insertAdjacentHTML('beforeend',`<h3 class='his-h3'>${element}</h3><hr>`)
+
+  // his.style.display = (his.style.display === 'none' || his.style.display === 'block') ? 'block' : 'none';
+
+// let tr=document.getElementById('h1').innerText.match(extractedText)
+let tr=extractedText.indexOf(document.getElementById('h1').innerText) !== -1
+ 
+if(tr){
+  // console.log(extractedText1,i)
+  cls_arr[extractedText1] = i;
+  text=extractedText1
+return 6
+}
+
+
+
+
+
+});
+
+function getKeyWithLowestValue(obj) {
+  let lowestValue = Infinity; // Initialize with a large value
+  let lowestKey = null;
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key) && typeof obj[key] === 'number') {
+      if (obj[key] < lowestValue) {
+        lowestValue = obj[key];
+        lowestKey = key;
+      }
+    }
+  }
+
+  return lowestKey;
+}
+
+let result = getKeyWithLowestValue(cls_arr);
+console.log(result)
+
+for (let i = 0; i < document.getElementsByClassName('h4').length; i++) {
+    // Access each element
+    let currentElement = document.getElementsByClassName('h4')[i];
+
+    // Do something with the current element (e.g., log its text content)
+    if(currentElement.textContent.indexOf(result) !== -1){
+      currentElement.style.cssText=`background: rgba(255,255,255,0.3);`
+    }
+  }
+
+
+
+}
+
+
+
+
+setInterval(() => {
+  hiss()
+}, 1000);
  </script>
 
     
