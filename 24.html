@@ -593,9 +593,9 @@ document.body.addEventListener("keydown", function(event) {
 	document.getElementById('vide').volume = Math.min(1, myVideo.volume - 0.10);
   }else   if (event.key === "ArrowLeft") {
    let currentTime = document.getElementById('vide').currentTime
-   document.getElementById('vide').currentTime =currentTime- 10;
+   document.getElementById('vide').currentTime =currentTime- 60;
   }else   if (event.key === "ArrowRight") {
-    document.getElementById('vide').currentTime += 10;
+    document.getElementById('vide').currentTime += 60;
 }
 
 else   if (event.key === "h") {
