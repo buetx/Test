@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -157,6 +156,44 @@ height: 10vw;
 
 }
 
+
+
+
+*{
+      margin: 0;
+      padding: 0;
+    }
+
+.contain{
+  background-color: red;
+  width:30vw;
+}
+video{width: 100%;
+height: 100%;
+}
+
+#pr{
+position: fixed;
+top: 0;
+bottom: 380;
+right: 0;
+padding: 60px;
+background-color: green;
+z-index: 200;
+opacity: .1;
+}
+
+#pl{
+position: fixed;
+top: 0;
+bottom: 380;
+left: 0;
+padding: 60px;
+background-color: green;
+z-index: 200;
+opacity: .1;
+}
+
 </style>
     
 </head>
@@ -254,15 +291,15 @@ window.load=async function (stringg){
     (function (link,ytlink,lec){
       let h4 = document.createElement("h4");
     h4.setAttribute('class', 'h4')
+
     console.log(i)
 
        h4.addEventListener("click",async function() {
            try{
-            console.log(i)
+          //  console.log(lec,h4)
 
 
-
-
+            
 
 
 
@@ -275,11 +312,15 @@ for (var i = 0; i < h4Elements.length; i++) {
     var currentH4 = h4Elements[i];
     // Do something with the current <h4> element
     currentH4.style.cssText=`background: rgba(255,255,255,0.7);`
+
 }
 
 
 
               h4.style.cssText=`background: rgba(255,255,255,0.3);`
+    
+
+              
 
 
              document.getElementById("loader").style.cssText = 'display:block'
@@ -296,10 +337,17 @@ for (var i = 0; i < h4Elements.length; i++) {
  type="application/pdf"></iframe> <a id="back" href="#3">Return</a>
                `
                document.getElementById('vid').innerHTML=`
-               <video autoplay id='vide'  width="300px" controls>
-  <source src=${myText} type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+
+
+
+<div id="contain" class="contain">
+  <p id="pr"> </p>
+  <p id="pl"> </p>
+
+  <video autoplay id="video" controls  src=${myText}></video>
+</div>
+
 `
              //  document.body.style.cssText = 'background-image: none;background-color: grey;margin:0;'
              //  window.open(myText,"_self");
@@ -311,21 +359,84 @@ for (var i = 0; i < h4Elements.length; i++) {
 
 
 
-             const documentRef = doc(firestore, 'history', String('webapp24'));
-const docSnapshot = await getDoc(documentRef);
-const history = collection(firestore, 'history')
-            const docData = {
-                data: [document.getElementById('h1').innerText+'  '+lec,...docSnapshot.data().data],
-                date: serverTimestamp(),
+//              const documentRef = doc(firestore, 'history', String('webapp24'));
+// const docSnapshot = await getDoc(documentRef);
+// const history = collection(firestore, 'history')
+//             const docData = {
+//                 data: [document.getElementById('h1').innerText+'  '+lec,...docSnapshot.data().data],
+//                 date: serverTimestamp(),
 
-            };
-            await setDoc(doc(history, String('webapp24')), docData);
+//             };
+//             await setDoc(doc(history, String('webapp24')), docData);
+
+
+
 
 
 
 
      }
+     else{
+      document.getElementById("loader").style.cssText = 'display:none'
+
+      document.getElementById('vid').innerHTML=`
+
+
+
+<div id="contain" class="contain">
+  <p id="pr"> </p>
+  <p id="pl"> </p>
+
+  <video autoplay id="video" controls  src=${ytlink}></video>
+</div>
+`
+     }
+
+
+
+
+
+
+     document.getElementById('contain').onclick=function (){
+  console.log(44)
+    document.getElementById('contain').requestFullscreen();
+    
+  
+  }
+
+  document.getElementById('pr').onclick=function (){
+    document.getElementById('video').currentTime += 10
+  
+  }
+  document.getElementById('pl').onclick=function (){
+    document.getElementById('video').currentTime = document.getElementById('video').currentTime- 10
+  
+  }
+
+
+
+     setTimeout(async () => {
+      
+    
+
+     let old0= await fetch('https://nodebd.vercel.app/fstore_doc/history/webapp24')
+            let old=await old0.text()
+            console.log()
+
+
+            await fetch('https://nodebd.vercel.app/fstore_updoc',{
+      method: 'POST',
+      body: JSON.stringify({"collection":"history","id":"webapp24","field":{"data":[document.getElementById('h1').innerText+'  '+lec,...JSON.parse(old).data]   }})
+    });
+
+    setTimeout(() => {
+  hiss()
+}, 5000);
+
+  }, 30000);
+
      }catch(e){
+     
                console.log(e);
                document.getElementById("loader").style.cssText = 'display:none'
        
@@ -593,9 +704,9 @@ document.body.addEventListener("keydown", function(event) {
 	document.getElementById('vide').volume = Math.min(1, myVideo.volume - 0.10);
   }else   if (event.key === "ArrowLeft") {
    let currentTime = document.getElementById('vide').currentTime
-   document.getElementById('vide').currentTime =currentTime- 60;
+   document.getElementById('vide').currentTime =currentTime- 10;
   }else   if (event.key === "ArrowRight") {
-    document.getElementById('vide').currentTime += 60;
+    document.getElementById('vide').currentTime += 10;
 }
 
 else   if (event.key === "h") {
@@ -644,9 +755,10 @@ setInterval(() => {
 
 
 window.hiss= async function (){
-  const documentRef = doc(firestore, 'history', String('webapp24'));
-const docSnapshot = await getDoc(documentRef);
-let arr0=docSnapshot.data().data
+  let old0= await fetch('https://nodebd.vercel.app/fstore_doc/history/webapp24')
+            let old=await old0.text()
+let arr0=JSON.parse(old).data
+
 let arr=[...new Set(arr0)]
 let his=document.getElementById('his')
 his.innerHTML=``
@@ -676,9 +788,12 @@ arr.forEach((element,i) => {
 
 
 window.hiss0= async function (){
-  const documentRef = doc(firestore, 'history', String('webapp24'));
-const docSnapshot = await getDoc(documentRef);
-let arr0=docSnapshot.data().data
+
+
+
+     let old0= await fetch('https://nodebd.vercel.app/fstore_doc/history/webapp24')
+            let old=await old0.text()
+let arr0=JSON.parse(old).data
 let arr=[...new Set(arr0)]
 let his=document.getElementById('his')
 his.innerHTML=``
@@ -760,9 +875,33 @@ for (let i = 0; i < document.getElementsByClassName('h4').length; i++) {
 
 
 
-setInterval(() => {
+setTimeout(() => {
   hiss()
 }, 1000);
+
+setInterval(() => {
+  hiss()
+}, 60000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  </script>
 
     
