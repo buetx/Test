@@ -165,7 +165,7 @@ height: 10vw;
     }
 
 .contain{
-  background-color: red;
+  background-color: rgb(0, 0, 0);
   width:30vw;
 }
 video{width: 100%;
@@ -691,26 +691,26 @@ document.body.addEventListener("keydown", function(event) {
   console.log(event.key)
   if (event.key === "f") {
     if (!document.fullscreenElement){
-      document.getElementById('vide').requestFullscreen() }else if(document.exitFullscreen) {
+      document.getElementById('video').requestFullscreen() }else if(document.exitFullscreen) {
     document.exitFullscreen();
        }
   }else   if (event.key === "ArrowUp") {
-    let myVideo  =document.getElementById('vide')
+    let myVideo  =document.getElementById('video')
 
-    document.getElementById('vide').volume = Math.min(1, myVideo.volume + 0.10);
+    document.getElementById('video').volume = Math.min(1, myVideo.volume + 0.10);
   }else   if (event.key === "ArrowDown") {
-    let myVideo  =document.getElementById('vide')
+    let myVideo  =document.getElementById('video')
   
-	document.getElementById('vide').volume = Math.min(1, myVideo.volume - 0.10);
+	document.getElementById('video').volume = Math.min(1, myVideo.volume - 0.10);
   }else   if (event.key === "ArrowLeft") {
-   let currentTime = document.getElementById('vide').currentTime
-   document.getElementById('vide').currentTime =currentTime- 10;
+   let currentTime = document.getElementById('video').currentTime
+   document.getElementById('video').currentTime =currentTime- 10;
   }else   if (event.key === "ArrowRight") {
-    document.getElementById('vide').currentTime += 10;
+    document.getElementById('video').currentTime += 10;
 }
 
 else   if (event.key === "h") {
-    // document.getElementById('vide').currentTime += 10;
+    // document.getElementById('video').currentTime += 10;
     let his=document.getElementById('his')
     console.log(his.style.display)
     if(his.style.display == 'none' ){
@@ -729,16 +729,16 @@ else   if (event.key === "h") {
 
 }
 // else   if (event.key === "d") {
-//     document.getElementById('vide').currentTime += 10;
+//     document.getElementById('video').currentTime += 10;
 // }else   if (event.key === "ArrowRight") {
-//     document.getElementById('vide').currentTime += 10;
+//     document.getElementById('video').currentTime += 10;
 // }
 
 else   if (event.key === " ") {
-    if(document.getElementById('vide').paused){
-        document.getElementById('vide').play()
+    if(document.getElementById('video').paused){
+        document.getElementById('video').play()
     }else{
-        document.getElementById('vide').pause()
+        document.getElementById('video').pause()
 
     }
     
@@ -897,11 +897,11 @@ setInterval(() => {
 
 // document.getElementById('pr').addEventListener('touchstart',function (){
 //     console.log(88)
-//     document.getElementById('video').currentTime += 10
+//     document.getElementById('videoo').currentTime += 10
   
 //   })
 //   document.getElementById('pl').addEventListener('touchstart',function (){
-//     document.getElementById('video').currentTime = document.getElementById('video').currentTime- 10
+//     document.getElementById('videoo').currentTime = document.getElementById('videoo').currentTime- 10
   
 //   })
 
@@ -910,10 +910,10 @@ setInterval(() => {
 
 setInterval(() => {
   if(still=='lyes'){
-    document.getElementById('video').currentTime = document.getElementById('video').currentTime- 10
+    document.getElementById('videoo').currentTime = document.getElementById('videoo').currentTime- 10
   }
   if(still=='ryes'){
-    document.getElementById('video').currentTime += 10
+    document.getElementById('videoo').currentTime += 10
   }
   console.log(still)
 }, 20);
@@ -929,3 +929,4 @@ setInterval(() => {
 </body>
 
     </html>
+
