@@ -217,7 +217,7 @@ opacity: .1;
 
 
     
- <script type="module">
+ <script type="module"> window.still='no';
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import {
       getDatabase, ref, onValue, remove, onChildChanged, update,get,child,set
@@ -399,20 +399,20 @@ for (var i = 0; i < h4Elements.length; i++) {
 
      document.getElementById('contain').onclick=function (){
   console.log(44)
+  screen.orientation.lock('landscape')
     document.getElementById('contain').requestFullscreen();
     
   
   }
 
-  document.getElementById('pr').onclick=function (){
-    document.getElementById('video').currentTime += 10
-  
-  }
-  document.getElementById('pl').onclick=function (){
-    document.getElementById('video').currentTime = document.getElementById('video').currentTime- 10
-  
-  }
 
+
+
+
+  document.getElementById('pl').addEventListener('touchstart',function (){still='lyes'});
+document.getElementById('pl').addEventListener('touchend',function (){still='no'});
+document.getElementById('pr').addEventListener('touchstart',function (){still='ryes'});
+document.getElementById('pr').addEventListener('touchend',function (){still='no'});
 
 
      setTimeout(async () => {
@@ -895,10 +895,28 @@ setInterval(() => {
 
 
 
+// document.getElementById('pr').addEventListener('touchstart',function (){
+//     console.log(88)
+//     document.getElementById('video').currentTime += 10
+  
+//   })
+//   document.getElementById('pl').addEventListener('touchstart',function (){
+//     document.getElementById('video').currentTime = document.getElementById('video').currentTime- 10
+  
+//   })
 
 
 
 
+setInterval(() => {
+  if(still=='lyes'){
+    document.getElementById('video').currentTime = document.getElementById('video').currentTime- 10
+  }
+  if(still=='ryes'){
+    document.getElementById('video').currentTime += 10
+  }
+  console.log(still)
+}, 20);
 
 
 
